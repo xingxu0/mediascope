@@ -1,0 +1,42 @@
+<xml>
+	<app>
+		<name>Limiting-Computation</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+
+		<stage>
+			<name>Recruit</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Limiting Computation</stmt>
+				<expiration>21:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>DoSomething1</name> <type>SPC</type>
+			<binary>medusalet_watchdog</binary>		
+			<trigger>none</trigger> 
+			<config>
+				<params>-w 5</params>
+			</config>
+		</stage>
+		<stage>
+			<name>DoSomething2</name> <type>SPC</type>
+			<binary>medusalet_watchdog</binary>		
+			<trigger>none</trigger> 
+			<config>
+				<params>-w 10</params>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Recruit</src> 
+			<dst> <success>DoSomething1</success> <failure>Recruit</failure> </dst>
+			<dst> <success>DoSomething2</success> <failure>Recruit</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+

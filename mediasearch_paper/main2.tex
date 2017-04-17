@@ -1,0 +1,61 @@
+\documentclass{sig-alternate-ipsn13}
+
+% \usepackage{amssymb,latexsym,amsmath,subfigure}     % Standard packages
+% \usepackage{algorithm, algorithmic}
+% \usepackage{color}
+% \usepackage{xspace}
+% \usepackage{enumitem}
+\usepackage{booktabs}
+\input{packages}
+\input{macros}
+
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+%\addtolength{\textwidth}{1.0in} \addtolength{\textheight}{1.00in}
+%\addtolength{\evensidemargin}{-0.75in}
+%\addtolength{\oddsidemargin}{-0.75in}
+%\addtolength{\topmargin}{-.50in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem/Proof Environments %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newtheorem{theorem}{Theorem}
+%\newenvironment{proof}{\noindent{\bf Proof:}}{$\hfill \Box$ \vspace{10pt}}
+\newcommand{\jyr}[1]{{\color{red}#1}}
+\newcommand{\xing}[1]{{\textcolor[rgb]{0.00,0.50,0.50}{Xing: #1}}}
+\newcommand{\mscope}{MediaScope\xspace}
+\newcommand{\crs}{Credit Reward Scheme\xspace}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+\begin{document}
+
+\title{MediaScope: Selective On-Demand Media Retrieval from Mobile Devices}
+ \author{ Paper \#53
+\vspace{-8pt}
+}
+
+\maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+%\input{maxmin}
+\input{Introduction}
+\input{motivation}
+%\input{architecture}
+%\input{design}
+\input{implementation}
+\input{evaluation}
+\input{relatedwork}
+\input{conclusion}
+
+%\vspace{2ex}
+{
+\footnotesize
+\bibliographystyle{abbrv}
+\bibliography{main}}
+
+\end{document}

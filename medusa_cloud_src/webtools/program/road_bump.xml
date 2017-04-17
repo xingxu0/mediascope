@@ -1,0 +1,117 @@
+<xml>
+	<app>
+		<name>Road-Bump</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		
+		<stage>
+			<name>Hiring</name>
+			<type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>This is a first question for rb recruiting</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>	
+		<stage>
+			<name>GetRawAccData</name>
+			<type>SPC</type>
+			<binary>medusalet_vcollect</binary>
+			<trigger>user-initiated</trigger>
+			<review>none</review>
+			<config>
+				<params>-t acc -r true -i 10 -f 50 -c 10 -l rb -s notification</params>
+				<output>ACC</output>
+			</config>
+		</stage>
+		<stage>
+			<name>GetRawGpsData</name>
+			<type>SPC</type>
+			<binary>medusalet_gpsrawcollect</binary>
+			<trigger>user-initiated</trigger>
+			<review>none</review>			
+			<config>
+					<params>-t gps -i 10 -c 10 -l rb -s notification</params>
+					<output>GPS</output>
+			</config>
+		</stage>	
+		<stage>
+			<name>RawDataCombine</name>
+			<type>SPC</type>
+			<binary>medusalet_combiner</binary>
+			<trigger>none</trigger>
+			<review>none</review>
+			<config>
+					<params>-t acc,gps -l rb</params>
+					<input>ACC,GPS</input>
+					<output>ACC_GPS</output>
+			</config>
+		</stage>	
+		<stage>
+			<name>GetFeatures</name>
+			<type>SPC</type>
+			<binary>medusalet_roadfeature</binary>
+			<trigger>none</trigger>
+			<review>yesno</review>							
+			<config>
+					<params>-t acc,gps -f 50 -v default</params>
+					<input>ACC_GPS</input>
+					<output>FEATURE</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name>
+			<type>SPC</type>
+			<binary>medusalet_uploaddata</binary>
+			<trigger>none</trigger>
+			<config>
+				<input>FEATURE</input>
+			</config>
+		</stage>
+		
+		<connector>
+			<src>Hiring</src> 
+			<dst>
+				<success>GetRawAccData</success>
+				<failure>Hiring</failure>
+			</dst>
+			<dst>
+				<success>GetRawGpsData</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>
+		<connector>
+			<src>GetRawAccData</src> 
+			<dst>
+				<success>RawDataCombine</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>
+		<connector>
+			<src>GetRawGpsData</src> 
+			<dst>
+				<success>RawDataCombine</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>	
+		<connector>
+			<src>RawDataCombine</src> 
+			<dst>
+				<success>GetFeatures</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>
+		<connector>
+			<src>GetFeatures</src>
+			<dst>
+				<success>UploadData</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>		
+	</app>
+</xml>
+
+
+

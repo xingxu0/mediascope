@@ -1,0 +1,45 @@
+<html>
+<form id="YX_form" action="http://128.125.121.187:8080/medusa" method="get">
+	<table border="1">
+	<tr valign=top><td>
+	<h3>Location Information</h3>
+	<p><pre> Street:    <input style="width: 200px" type="text" name="street" value="3710 S. McClintock Avenue"></pre>
+	</p>
+	<p><pre> City:	    <input style="width: 200px" type="text" name="city" value="Los Angeles"></pre>
+	</p>
+ 	<p><pre> State:     <input style="width: 200px" type="text" name="state" value="CA"></pre>
+	</p>
+	<p><pre> R (miles): <input style="width: 200px" type="text" name="r" value="0"></pre>
+	</p>
+	</td><td>
+	<h3>Time Range</h3>
+	<pre> Start time (2012-MM-DD HH:00:00):</pre>
+	<pre>	2012-<select name="s_mon"><option>1<option>2<option>3<option>4<option selected>5<option>6<option>7<option>8<option>9<option>10<option>11<option>12</select>-<select name="s_day"><option selected>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9<option>10<option>11<option>12<option>13<option>14<option>15<option>16<option>17<option>18<option>19<option>20<option>21<option>22<option>23<option>24<option>25<option>26<option>27<option>28<option>29<option>30<option>31</select> <select name="s_hou"><option selected>0<option>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9<option>10<option>11<option>12<option>13<option>14<option>15<option>16<option>17<option>18<option>19<option>20<option>21<option>22<option>23<option></select>:00:00</pre>
+	<pre> End time (2012-MM-DD HH:00:00):</pre>
+	<pre>	2012-<select name="e_mon"><option>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9<option>10<option>11<option selected>12</select>-<select name="e_day"><option selected>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9<option>10<option>11<option>12<option>13<option>14<option>15<option>16<option>17<option>18<option>19<option>20<option>21<option>22<option>23<option>24<option>25<option>26<option>27<option>28<option>29<option>30<option>31</select> <select name="e_hou"><option selected>0<option>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9<option>10<option>11<option>12<option>13<option>14<option>15<option>16<option>17<option>18<option>19<option>20<option>21<option>22<option>23<option></select>:00:00</pre>
+	</td></tr>
+	<tr valign=top><td>
+	<h3>Query Type</h3>
+	<p><pre> Query Number: <select name="type"><option selected>0<option>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9</select>  Options: <input style="width: 40px" type="text" name="option1" value="10"><input style="width: 40px" type="text" name="option2" value="X"></pre>
+	</p>
+	</td><td>
+	<h3>Response Time</h3>
+	<p><pre> Hard deadline in seconds: <input style="width: 100px" type="text" name="deadline" value="10"></pre></p>
+	<pre>			<input align="right" type="submit" name="YX_submit" value="      Submit      "></pre>
+	</table>	
+
+<BR> </BR>
+<BR> </BR>
+
+
+
+Note:
+<table border="1">
+  <tr><td width="100" align="center">Query No.</td><td width="200" align="center">Description</td><td width="200" align="center">Option 1</td><td width="200" align="center">Option 2</td></tr>
+  <tr><td align="center">0</td><td align="center">Top K similar</td><td align="center">K</td><td align="center">Filename @ Server</td></tr>
+  <tr><td align="center">1</td><td align="center">Most Dissimilar (MST)</td><td align="center">N/A</td><td align="center">N/A</td></tr>
+  <tr><td align="center">2</td><td align="center">Common Interest(K Means)</td><td align="center">Num of Clusteres</td><td align="center">N/A</td></tr>
+  <tr><td align="center">3</td><td align="center">Cluster Presentation</td><td align="center">Num of Clusteres</td><td align="center">N/A</td></tr>
+</table>
+</form>
+</html>

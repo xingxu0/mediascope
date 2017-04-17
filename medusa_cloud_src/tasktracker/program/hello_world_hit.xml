@@ -1,0 +1,32 @@
+<xml>
+	<app>
+		<name>HelloWorld HIT</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<listener>mra.enl@gmail.com</listener>
+			<config>
+				<stmt>Hello World with HIT</stmt>
+				<expiration>18:00:00 07/16/2012</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>HelloWorld</name> <type>SPC</type>
+			<binary>medusalet_helloworld</binary>		
+			<inst>Hello</inst>
+			<trigger>none</trigger> 
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>HelloWorld</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+

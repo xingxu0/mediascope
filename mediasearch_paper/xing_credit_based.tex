@@ -1,0 +1,9 @@
+\section{Xing: credit based design}
+Based on the query type and parameters, each query algorithm will generate a list of selected media objects to answer the query. We request each query algorithm to assign \textit{credit} to each of the selected object, which represents the importance of such object to the query. Then naturally we can use such credit to evaluate the query result in terms of importancy of uploaded objects. 
+
+We use $Q_i$ to denote the $i$-th query, assume it selected $n$ objects, namely $o_i^1, o_i^2, \cdots, o_i^n$, the credit for them is $c_i^1, c_i^2, \cdots, c_i^n$, note that, such objects are from different phones. Each query has a deadline $D_i$. We define a binary function $g(o)$ to denote whether $o$ got uploaded before its deadline ($1$ for uploaded while $0$ for otherwise). Thus, for a single query, we use query's credit to evaluate whether such result is good or not:
+$$c(Q_i)=\sum_j=1^n g(o_i^j)c_i^j$$ 
+
+In the situation where there are concurrent queries 
+
+

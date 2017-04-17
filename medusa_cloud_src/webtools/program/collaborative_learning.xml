@@ -1,0 +1,78 @@
+<xml>
+	<app>
+		<name>Collborative-Learning</name>
+		<rrid>AKIAIRJ4C6CE75KIB5HA</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<timeout>5 hours</timeout>
+
+		<stage>
+			<name>Hiring</name>
+			<type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>This is a first question for cl recruiting</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>GetRawData</name>
+			<type>SPC</type>
+			<binary>medusalet_vcollect</binary>
+			<trigger>user-initiated</trigger>
+			<review>labeling</review>
+			<reviewopt>sitting|driving|walking|running</reviewopt>		
+			<config>
+				<params>-t acc -r false -i 100 -f 50 -c 3 -l cl -s notification</params>
+				<output>RAW</output>
+			</config>
+		</stage>				
+		<stage>
+			<name>GetFeatures</name>
+			<type>SPC</type>
+			<binary>medusalet_vfeature</binary>
+			<trigger>none</trigger>
+			<review>none</review>
+			<config>
+				<params>-t acc -v default</params>
+				<input>RAW</input>
+				<output>FEATURE</output>
+			</config>			
+		</stage>		
+		<stage>
+			<name>UploadData</name>
+			<type>SPC</type>
+			<binary>medusalet_uploaddata</binary>
+			<trigger>none</trigger>
+			<config>
+				<input>FEATURE</input>
+			</config>
+		</stage>	
+		
+		<connector>
+			<src>Hiring</src> 
+			<dst>
+				<success>GetRawData</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>
+		<connector>
+			<src>GetRawData</src> 
+			<dst>
+				<success>GetFeatures</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>
+		<connector>
+			<src>GetFeatures</src>
+			<dst>
+				<success>UploadData</success>
+				<failure>Hiring</failure>
+			</dst>
+		</connector>
+	</app>
+</xml>
+
+
+

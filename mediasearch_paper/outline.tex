@@ -1,0 +1,352 @@
+% Created 2012-10-10 Wed 08:35
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{MediaScope: Selective On-Demand Retrieval of Media from Mobile Devices}
+\author{Ramesh Govindan}
+\date{\today}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.11}}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Introduction}
+\label{sec-1}
+
+
+Cameras on mobile devices have given rise to significant \emph{sharing} of
+media sensor data (people share photos and videos).
+
+However, capabilities of mobile device cameras have outstripped the
+cellular network capability; significant cellular data usage is
+required to upload media, and this costs money.
+
+This has resulted in an \emph{availability gap}: media is shared/uploaded
+often much later than the data is generated.
+
+In this paper, we take the first step toward bridging this
+availability gap. We are motivated by the following scenario: users at
+a mall or some other location take pictures and video of some event
+(e.g., an accident or altercation). An investigative team wants visual
+evidence of the event.
+
+We develop a system called MediaScope that permits concurrent timely
+geometric queries in feature space on media data that may be
+distributed across several mobile devices. MediaScope queries permit
+\emph{searches} for images and videos closest to a given image in future
+space, \emph{spanners} that the retrieve samples of images that span the
+feature space, or \emph{cluster representatives} that are samples of
+natural clusters in the feature space.
+
+\ldots{}
+\section{Motivation and Challenges}
+\label{sec-2}
+\subsection{Motivation}
+\label{sec-2-1}
+
+
+Cellphones with build-in high resolution camera becomes more and more
+popular. People take photos and videos with their phones all the time.
+
+However, bandwidth limitations mean that image and video sharing has
+an availability gap. Explain how graph was taken.
+
+Describe the implications of availability gap: lots of useful sensing
+information lacks \emph{freshness}. This problem is not going away, because
+mobile device memories are fairly large. A 64 GB ipad can store over
+100,000 photos; with a 2 GB monthly plan, these photos would take over
+a year to upload using cellular.
+
+Many apps could be enabled by instant access to \emph{fresh} visual information:
+\begin{itemize}
+\item Surveillance example (mall/etc.)
+\item Sportswriter looking for perfect picture of a play
+\item others\ldots{}
+\end{itemize}
+
+Main focus of paper: looking for ways to bridge the availability gap.
+\subsection{Approach}
+\label{sec-2-2}
+
+
+We propose to explore ways to retrieve stored images from mobile
+devices on-demand. Our approach is inspired by \emph{image search}
+techniques, which support similarity searches on image feature space.
+
+Briefly describe how image searches work. Start by describing how
+features are extracted (give concrete examples of features). Then
+described actual similarity metrics etc. (This might need a separate
+subsection).
+
+On top of this image similarity search primitive, we build a query
+interface that supports the following queries:
+\begin{itemize}
+\item top K matching images
+\item spanners or contours in feature space
+\item clusters in feature space
+\end{itemize}
+(in describing each query, discuss carefully practical examples of why
+the query may be useful).
+
+Queries may:
+\begin{itemize}
+\item be constrained by other attributes (e.g., location, time, freshness
+  etc.)
+\item may have timeliness associated with them: i.e.,  constraints on
+  returning maximal information within a specified time limit.
+\end{itemize}
+
+This approach works well because:
+\begin{itemize}
+\item image features are relatively compact
+\item only matching images are retrieved, thereby minimizing bandwidth usage
+\end{itemize}
+
+Downside of our approach:
+\begin{itemize}
+\item current image search-based approaches incur a \emph{semantic gap}; they
+  don't understand the semantic information in images and can be
+  imprecise; in our system, we assume that the retrieved images are
+  further filtered by humans in order to make semantic sense
+\end{itemize}
+\subsection{Challenges of approach}
+\label{sec-2-3}
+
+
+\begin{itemize}
+\item Query timelines
+\item Variable and limited bandwidth availability on the mobile devices
+\item Designing geometric algorithms for the queries
+\item Efficiently supporting multiple queries, and  permitting resource
+  sharing between queries while still allowing maximal information
+  upload
+\end{itemize}
+
+Other challenges: our approach is essentially a form of
+crowdsourcing. In this paper we have not addressed privacy and
+incentive issues; other work has done that [Medusa]. 
+
+We have design a system called MediaScope which addresses all these
+challenges, in a manner described below.
+\section{MediaScope Design and Implementation}
+\label{sec-3}
+\subsection{System Architecture}
+\label{sec-3-1}
+
+
+The system consists of two partitioned components: MSCloud is the
+Mediascope component that runs on a cloud-based service, and MSMobile
+is the component that runs on the mobile device.
+
+MSMobile uploads feature vectors for each image to MSCloud. Explain
+why this is beneficial.
+
+Users pose search queries to MSCloud, which has two components:
+\begin{itemize}
+\item MSCloudDB: image features are stored here
+\item MSCloudQ: the query processing engine on the cloud
+\end{itemize}
+
+Finally, MSMobile processes metadata and uploads search results.
+
+(Add a figure which shows the query result workflow).
+\subsection{Design: Supporting multiple concurrent queries}
+\label{sec-3-2}
+
+
+The central, and most challenging component of Mediascope, is support
+for concurrent queries.
+
+In the design of MediaScope, we have to design for a situation in
+which there may be multiple concurrent queries, such that the answers
+to these queries cannot all be satisfied within their timeliness
+constraints because of bandwidth limitations.
+
+In this case, our goal is to attempt to maximize the amount of
+information delivered across all queries. In particular, this means
+that it would be preferable to obtain as much of the ``high order bits''
+of the query result for each query, than to obtain all of the results
+for one query.
+
+Our approach uses two mechanisms to address this challenge:
+\begin{itemize}
+\item a system defined assignment of ``credits'' to individual queries: this
+  assignment roughly determines the relative proportion of resources
+  that this query can use
+\item for each query, we also define a method by which credits can be
+  allocated to query results and design a scheduling algorithm that
+  attempts to maximize the total number of credits retrieved
+\end{itemize}
+
+Thus, query semantics are ``approximate'' necessarily because of
+timeliness constraints one may not get complete queries; level of
+completeness can be varied by  adjusting the credits assigned to each query.
+\subsubsection{Queries and Credit Assignment}
+\label{sec-3-2-1}
+
+
+Algorithm for each different query not only generates a list of media
+objects to upload, but each media object is associated with a credit,
+indicating the “importance” of such object.
+
+Discuss design of different queries:
+\begin{itemize}
+\item top K: basically a nearest neighbor search in feature space;
+  discuss how credits are assigned to each object in the result
+\item spanner: an MST in feature space; discuss how credits are assigned.
+\item clusters: discuss, for each of these, credit assignment
+\begin{itemize}
+\item clusters with most users (in the largest cluster, pick one
+    representative photo)
+\item clusters by topic: pick one representative photo in each cluster
+\end{itemize}
+\end{itemize}
+
+Extensibility:
+\begin{itemize}
+\item discuss what someone might have to do to extend this framework and
+  add new queries (e.g., a convex polytope)
+\begin{itemize}
+\item define a fast implementation of the query
+\item define credit assignments for query results
+\end{itemize}
+\end{itemize}
+\subsubsection{Credit-based Scheduling}
+\label{sec-3-2-2}
+
+
+Server evaluates a query with the metadata and assigns credit values
+Then, tasks phones to upload media objects with assigned credit values
+
+Scheduling on the phone is credit-based:
+\begin{itemize}
+\item describe the credit-based algorithm
+\begin{itemize}
+\item show how the algorithm works with an example
+\item include pseudocode for the algorithm (pseudo should consider query
+    arrival etc.)
+\end{itemize}
+\item discuss the theoretical properties of this algorithm
+\end{itemize}
+\subsubsection{Feature extraction on the phone}
+\label{sec-3-2-3}
+
+
+Describe what feature extraction algorithms we have tried
+
+Discuss challenges of feature extraction on the phone
+\begin{itemize}
+\item video frame extraction
+\item image feature extraction
+\end{itemize}
+
+For video frame extraction, show the result of the evaluation of the
+time taken to extract at different rates; then say we picked 1Hz for
+this paper.
+
+Image feature extraction:
+\begin{itemize}
+\item feature extraction from large photos exceeds memory
+\item show the resizing/accuracy trade-off
+\end{itemize}
+\subsubsection{MSCloud to MSMobile communication}
+\label{sec-3-2-4}
+
+
+Use Medusa, a crowd-sensing platform
+\begin{itemize}
+\item (since this is a double-blind submission, do not refer to this as
+    our work)
+\item in one paragraph, try to describe how Medusa works
+\end{itemize}
+
+Say what we had to add to Medusa to support MediaScope
+\begin{itemize}
+\item polling-based notifications to reduce latency
+\item support for task deletion
+\item push notification using C2DM
+\item support for machine generated Medusa tasks
+\item others?
+\end{itemize}
+
+Then, describe how MediaScope uses Medusa:
+\begin{itemize}
+\item generating metadata is a task;
+\item upload is a task
+\item credit based upload is a new transfer manager component
+\item Medusa has a callback to MediaScope to notify object/metadata upload
+\end{itemize}
+\section{Evaluation}
+\label{sec-4}
+\subsection{Methodology}
+\label{sec-4-1}
+
+
+Briefly discuss our implementation, saying how many lines of code (use
+SLOCCount if you can).
+
+Say that all our results are from implementation. Are we including
+results from a simulator?
+\subsection{Metrics}
+\label{sec-4-2}
+
+Total credit retrieved, for different query mixes
+\begin{itemize}
+\item compare against a variety of alternative approaches:
+\begin{itemize}
+\item max credit, earliest deadline, etc.
+\end{itemize}
+\end{itemize}
+
+System overhead:
+\begin{itemize}
+\item time to upload a small file end-to-end: use Wifi and cellular network
+\item breakdown of latency:
+\begin{itemize}
+\item where is the latency going? (Medusa server, notification, medusa
+      phone etc.)
+\end{itemize}
+\end{itemize}
+\subsection{Results: Credit retrieval comparison}
+\label{sec-4-3}
+\subsection{Results: Overhead}
+\label{sec-4-4}
+\section{Related Work}
+\label{sec-5}
+
+
+\begin{itemize}
+\item Image Search
+\item UIUC related work, other mobile papers
+\end{itemize}
+\section{Conclusions}
+\label{sec-6}
+
+\end{document}

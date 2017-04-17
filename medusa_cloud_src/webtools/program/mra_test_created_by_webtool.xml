@@ -1,0 +1,48 @@
+<xml>
+<app>
+<name>mra_test</name>
+<cmdpush>c2dm</cmdpush>
+<rrid>default</rrid>
+<rrkey>default</rrkey>
+<wwid>nexus</wwid>
+<timeout>24 hours</timeout>
+<stage><name>TakeVideo</name>
+<type>SPC</type>
+<binary>medusalet_mediagen</binary>
+<inst>Take a short video</inst>
+<trigger>immediate</trigger>
+<review>none</review>
+<preview>none</preview>
+<config><output>VIDEO</output>
+<params>-t video</params>
+</config></stage>
+<stage><name>GetSummary</name>
+<type>SPC</type>
+<binary>medusalet_videosummary</binary>
+<inst>Generating Summary video</inst>
+<trigger>immediate</trigger>
+<review>none</review>
+<preview>none</preview>
+<config><input>VIDEO</input>
+<output>SUMMARY</output>
+</config></stage>
+<stage><name>UploadSummary</name>
+<type>SPC</type>
+<binary>medusalet_uploaddata</binary>
+<inst>Uploading Data</inst>
+<trigger>immediate</trigger>
+<review>none</review>
+<preview>user-initiated</preview>
+<config><input>SUMMARY</input>
+</config></stage>
+
+<connector><src>TakeVideo</src>
+<dst><success>GetSummary</success><failure>TakeVideo</failure>
+</dst>
+</connector>
+<connector><src>GetSummary</src>
+<dst><success>UploadSummary</success><failure>TakeVideo</failure>
+</dst>
+</connector>
+</app>
+</xml>

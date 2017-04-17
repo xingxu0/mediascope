@@ -1,0 +1,46 @@
+<xml>
+	<app>
+		<name>Citizen-Journalst</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Citizen Journalist Demonstration</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>TakePicture</name> <type>SPC</type>
+			<binary>medusalet_mediagen</binary>		
+			<trigger>location=34.020259|-118.290131|40, user-initiated</trigger>	
+			<config>
+				<params>-t image</params>
+				<output>IMAGE</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger> <review>textdesc</review>
+			<config>
+				<input>IMAGE</input>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>TakePicture</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>TakePicture</src> 
+			<dst> <success>UploadData</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+

@@ -1,0 +1,163 @@
+% Useful macros for paper writing
+
+\definecolor{brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{magenta}{rgb}{0.4,0.7,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{green}{rgb}{0.5,0,0.5}
+\definecolor{blue}{rgb}{0,0,1}
+\newcommand{\etc}{\emph{etc.}\xspace}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\vlc}{vlc\xspace}
+\newcommand{\SNOOZE}{Snooze\xspace}
+\newcommand{\snz}{Snooze\xspace}
+\newcommand{\POLICE}{Police\xspace}
+\newcommand{\police}{Police\xspace}
+\newcommand{\Police}{Police\xspace}
+\newcommand{\PSTA}{Police Station\xspace}
+\newcommand{\RTH}{\textbf{A}\xspace}
+\newcommand{\ISI}{\textbf{B}\xspace}
+%\newcommand{\reducefiguretopvmargin}{\vspace*{0ex}}
+%\newcommand{\reducefigurebottomvmargin}{\vspace*{0.0ex}}
+\newcommand{\reducefigurebottomvmarginsmall}{\vspace{-3mm}}
+\newcommand{\reducefigurebottomvmargin}{\vspace{-4mm}}
+\newcommand{\reducefigurecaptionmargin}{\vspace{-0mm}}
+\newcommand{\reduceparavmargin}{\vspace*{0.0ex}}
+%\newcommand{\reduceparavmargin}{\vspace*{-2.0ex}}
+\newcommand{\reducesectionvmargin}{\vspace*{0.0ex}}
+%\newcommand{\reducesectionvmargin}{\vspace*{-1.0ex}}
+\newcommand{\reducevmarginsmall}{\vspace*{-.5ex}}
+\newcommand{\reducevmarginone}{\vspace*{-1.0ex}}
+\newcommand{\reducevmargintwo}{\vspace*{-2.0ex}}
+\newcommand{\reducevmarginthree}{\vspace*{-3.0ex}}
+\newcommand{\reducevmarginfour}{\vspace*{-4.0ex}}
+\newcommand{\reducevmarginfive}{\vspace*{-5.0ex}}
+\newcommand{\mypar}[1]{\vspace*{0.5ex}\noindent\textbf{#1}}
+\newcommand{\mypari}[1]{\vspace*{0.5ex}\noindent\emph{#1}}
+
+\newcommand{\spacesavecaption}[1]{\vspace*{0.0ex}\caption{#1}\vspace*{-3.5ex}}
+
+\newcommand{\smallsection}[1]{\vspace*{1ex}\noindent\textbf{#1}}
+
+% comment
+\newcommand{\comment}[1]{{\color{gray}[\textsf{#1}]}}
+\newcommand{\binliu}[1]{{\color{green}(KJ: #1)}}
+\newcommand{\fei}[1]{{\color{red}(AS: #1)}}
+\newcommand{\ramesh}[1]{{\color{blue}(RG: #1)}}
+\newcommand{\yurong}[1]{{\color{brown}(SH: #1)}}
+\newcommand{\camera}[1]{#1}
+
+%\hyphenation{rate-allo-c-ation}
+
+\newcommand{\equaref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\figref}[1]{\ref{fig:#1}}
+\newcommand{\algref}[1]{Alg.~(\ref{alg:#1})}
+\newcommand{\ruleref}[1]{\textsc{Rule}~\ref{rule:#1}}
+\newtheorem{rul}{Rule}
+\newcommand{\nonoverlapping}{\mbox{non-o}\-ver\-lap\-ping\xspace}
+\newcommand{\interframe}{interframe\xspace}
+
+\newcommand{\script}[1]{{{\cal{#1}}}}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+% \newenvironment{definition}[1][Definition]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{example}[1][Example]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{remark}[1][Remark]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\bm}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\ppcl}{Pickle\xspace}
+
+
+
+%Figures
+
+\newcommand{\scaleImage}[4]{
+\begin{figure}[#1]
+\centering
+\includegraphics[width=#2\textwidth]{figs/#3}
+\reducefigurecaptionmargin
+\caption{#4\label{fig:#3}}
+\reducefigurebottomvmarginsmall
+\end{figure}
+}
+
+\newcommand{\scaleImageLabel}[5]{
+\begin{figure}[#1]
+\centering
+\includegraphics[width=#2\textwidth]{figs/#3}
+\reducefigurecaptionmargin
+\caption{#4\label{fig:#5}}
+\reducefigurebottomvmarginsmall
+\end{figure}
+}
+
+
+\newcommand{\fullColumnFigs}[3]
+{
+\begin{figure*}[!tb]
+  \centering
+  {#1}
+\reducefigurecaptionmargin
+\caption{#2\label{fig:#3}}
+\reducefigurebottomvmargin
+\end{figure*}
+}
+
+\newcommand{\scaleTable}[4]{
+\begin{table}[#1]
+\centering
+\includegraphics[width=#2\textwidth]{figs/#3}
+\reducefigurecaptionmargin
+\caption{#4\label{tbl:#3}}
+\reducefigurebottomvmarginsmall
+\end{table}
+}
+
+\newcommand{\oneColumnFigs}[3]
+{
+\begin{figure}[t]
+  \centering
+  {#1}
+\reducefigurecaptionmargin
+\caption{#2\label{fig:#3}}
+\reducefigurebottomvmargin
+\end{figure}
+}
+
+\newcommand{\subImage}[3]{% width, filename1, caption1, label1
+    \hspace*{-2.0ex}
+    \subfigure[#3]
+    {
+      \includegraphics[width=#1\textwidth]{figs/#2}
+      \label{fig:#2}
+    }
+}
+
+\newcommand{\subImagePadded}[5]{% figure_width, hpadding, filename1, caption1, label1
+    \subfigure[#4]
+    {
+      \hspace{#2\textwidth}
+      \includegraphics[width=#1\textwidth]{figs/#3}
+      \hspace{#2\textwidth}
+      \label{fig:#5}
+    }
+}
+
+\newcommand{\subImageWithNoLable}[2]{% width, filename1, caption1, label1
+      \includegraphics[width=#1\textwidth]{figs/#2}
+}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End: 

@@ -1,0 +1,87 @@
+<xml>
+	<app>
+		<name>Video-Documentation</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<timeout>5 hours</timeout>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Video Documentation App. Demonstration</stmt>
+				<expiration>18:00:00 04/26/2012</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>CollectVideo</name> <type>SPC</type>
+			<binary>medusalet_mediagen</binary>		
+			<trigger>user-initiated</trigger> <review>none</review>
+			<config>
+				<params>-t video</params>
+				<output>VIDEO</output>
+			</config>
+		</stage>
+		<stage>
+			<name>GetSummary</name> <type>SPC</type>
+			<binary>medusalet_videosummary</binary>		
+			<trigger>immediate</trigger> <review>none</review>
+			<config>
+				<input>VIDEO</input>
+				<output>SUMMARY</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadSummary</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>immediate</trigger> 
+			<config>
+				<input>SUMMARY</input>
+			</config>
+		</stage>
+		<stage>
+			<name>Curating</name> <type>HIT</type>
+			<binary>vote</binary> <wid>all</wid>
+			<config>
+				<stmt>Judging from Video Summaries</stmt>
+				<expiration>18:00:00 04/26/2012</expiration>
+				<reward>.01</reward>
+				<numusers>2</numusers>
+				<input>SUMMARY</input>
+				<output>$SMASK</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger> 
+			<config>
+				<input>$SMASK,VIDEO</input>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>CollectVideo</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>CollectVideo</src> 
+			<dst> <success>GetSummary</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>GetSummary</src> 
+			<dst> <success>UploadSummary</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>UploadSummary</src> 
+			<dst> <success>Curating</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>Curating</src> 
+			<dst> <success>UploadData</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+

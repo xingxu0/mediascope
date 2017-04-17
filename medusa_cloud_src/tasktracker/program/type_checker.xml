@@ -1,0 +1,32 @@
+<xml>
+	<app>
+		<name>Type-Checker</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+
+		<stage>
+			<name>Recruit</name> 
+			<type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Type Checker Demonstration</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<input>W_WID,R_RID</input>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>HelloWorld</name> <type>SPC</type>
+			<binary>medusalet_helloworld</binary>		
+			<trigger>none</trigger>
+		</stage>
+
+		<connector>
+			<src>Recruit</src> 
+			<dst> <success>HelloWorld</success> <failure>Recruit</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+

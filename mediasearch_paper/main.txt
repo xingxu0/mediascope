@@ -1,0 +1,340 @@
+@inproceedings{sensorranking, 
+ title={Sensor Ranking: A Primitive for Efficient Content-based Sensor Search},
+ author={B. M. Elahi, K. R?mer, B. Ostermaie, M. Fahrmair and W. Kellerer},
+ booktitle={Proc. of ACM Information Processing in Sensor Networks (IPSN)}, 
+ pages={217--228},
+ year={2009},
+ organization={ACM}
+}
+
+@inproceedings{energy,
+  title={Energy conservation by adaptive feature loading for mobile content-based image retrieval},
+  author={ K. Kumar and Y. Nimmagadda and Y.J. Hong and Y.H. Lu},
+  booktitle={ACM/IEEE International Symposium on Low Power Electronics and Design (ISLPED'08) },
+  pages={153--158},
+  year={2008},
+  organization={IEEE}
+
+}
+
+@inproceedings{gap,
+  title={Learning to reduce the semantic gap in web image retrieval and annotation},
+  author={C.  Wang and  L. Zhang and  H.J.Zhang},
+  booktitle={Proc. of the 31st annual international ACM SIGIR conference on Research and development in information retrieval},
+  pages={355--362},
+  year={2008}
+}
+@inproceedings{content1,
+  title={Content-based image retrieval using a mobile device as a novel interface},
+  author={J.S.Hare and  P.H. Lewis},
+  booktitle={Electronic Imaging 2005},
+  pages={64--75},
+  year={2005},
+  organization={International Society for Optics and Photonics}
+}
+@inproceedings{fast,
+  title={A fast image retrieval system using index lookup table on mobile device},
+  author={J. Yang and S. Park and H. Seong and H. Byun and Y.K Lim},
+  booktitle={19th International Conference on Pattern Recognition(ICPR'08) },
+  pages={1--4},
+  year={2008},
+  organization={IEEE}
+}
+@inproceedings{content2,
+  title={Content-based image retrieval for connected mobile devices},
+  author={M. Gabbouj and  I. Ahmad and M.Y. Amin and S. Kiranyaz},
+  booktitle={Proc. of Second International Symposium on Communications, Control and Signal Processing (ISCCSP)},
+  year={2006},
+  organization={Citeseer}
+}
+@inproceedings{content3,
+  title={Content-based image retrieval on mobile devices},
+  author={ I. Ahmad and S. Abdullah and S. Kiranyaz and M. Gabbouj},
+  booktitle={Proc. of SPIE},
+  volume={5684},
+  pages={255--264},
+  year={2005}
+}
+@inproceedings{mmm2,
+  title={MMM2: mobile media metadata for media sharing},
+  author={ M. Davis and N. Van House and J. Towle and S. King and S. Ahern and C. Burgener and D. Perkel and M. Finn and V. Viswanathan  and M. Rothenberg},
+  booktitle={Proc. of  CHI'05 extended abstracts on Human factors in computing systems },
+  pages={1335--1338},
+  year={2005},
+  organization={ACM}
+}
+
+@inproceedings{crowdsearch,
+  title={Crowdsearch: exploiting crowds for accurate real-time image search on mobile phones},
+  author={T. Yan and V. Kumar and D. Ganesan},
+  booktitle={Proc. of the 8th international conference on Mobile systems, applications, and services(Mobisys'10)},
+  pages={77--90},
+  year={2010},
+  organization={ACM}
+}
+@inproceedings{tagsense,
+  title={Tagsense: a smartphone-based approach to automatic image tagging},
+  author={C. Qin and X. Bao and R. Roy Choudhury and S. Nelakuditi},
+  booktitle={Proc. of the 9th international conference on Mobile systems, applications, and services(Mobisys'11)},
+  pages={1--14},
+  year={2011},
+  organization={ACM}
+}
+@inproceedings{hierac,
+  title={Hierarchical clustering of WWW image search results using visual, textual and link information},
+  author={D. Cai and X. He and Z. Li and W.Y. Ma and J.R. Wen},
+  booktitle={Proc. of the 12th annual ACM international conference on Multimedia},
+  pages={952--959},
+  year={2004},
+  organization={ACM}
+}
+@inproceedings{content4,
+  title={Content-based image retrieval by clustering},
+  author={ Y. Chen and J.Z. Wang and R. Krovetz},
+  booktitle={Proc. of the 5th ACM SIGMM international workshop on Multimedia information retrieval},
+  pages={193--200},
+  year={2003},
+  organization={ACM}
+}
+@article{photomap,
+  title={PhotoMap: from location and time to context-aware photo annotations},
+  author={W. Viana and J. Bringel Filho and J. Gensel and M. Villanova-Oliver and and H. Martin },
+  journal={Journal of Location Based Services},
+  volume={2},
+  number={3},
+  pages={211--235},
+  year={2008},
+  publisher={Taylor \& Francis}
+}
+@article{tinydb,
+  title={TinyDB: An acquisitional query processing system for sensor networks},
+  author={ S.R. Madden and  M.J. Franklin and J.M. Hellerstein and W. Hong},
+  journal={ACM Transactions on Database Systems (TODS)},
+  volume={30},
+  number={1},
+  pages={122--173},
+  year={2005},
+  publisher={ACM}
+}
+@inproceedings{photonet,
+  title={Photonet: a similarity-aware picture delivery service for situation awareness},
+  author={M.Y.S.  Uddin and H. Wang and  F. Saremi and  G.J. Qi and  T. Abdelzaher and T. Huang },
+  booktitle={IEEE 32nd Real-Time Systems Symposium (RTSS'11) },
+  pages={317--326},
+  year={2011},
+  organization={IEEE}
+}
+
+@inproceedings{faceted,
+  title={Faceted metadata for image search and browsing},
+  author={ K.P. Yee and K. Swearingen and K. Li and M. Hearst},
+  booktitle={Proc. of the SIGCHI conference on Human factors in computing systems},
+  pages={401--408},
+  year={2003},
+  organization={ACM}
+}
+@inproceedings{virage,
+  title={The Virage image search engine: An open framework for image management},
+  author={J.R. Bach and C. Fuller and A. Gupta and A. Hampapur and B. Horowitz and R. Humphrey and R. Jain and C.F. Shu },
+  booktitle={SPIE Storage and Retrieval for Image and Video Databases IV},
+  pages={76--87},
+  year={1996}
+}
+@inproceedings{learning,
+  title={Learning object categories from Google's image search},
+  author={R. Fergus and  L. Fei-Fei and P. Perona and A. Zisserman},
+  booktitle={10th IEEE International Conference on Computer Vision(ICCV'05). },
+  volume={2},
+  pages={1816--1823},
+  year={2005},
+  organization={IEEE}
+}
+@inproceedings{lire,
+  title={Lire: lucene image retrieval: an extensible java CBIR library},
+  author={ M. Lux and S.A. Chatzichristofis},
+  booktitle={Proceeding of the 16th ACM international conference on Multimedia},
+  pages={1085--1088},
+  year={2008},
+  organization={ACM}
+}
+@misc{sloccount,
+  title={SLOCCount},
+  author={Wheeler, D.A.},
+  year={2001}
+}
+@book{tanimoto,
+  title={An elementary mathematical theory of classification and prediction},
+  author={ T.T. Tanimoto},
+  year={1958},
+  publisher={International Business Machines Corporation}
+}
+@article{Scooter,
+  title={TEEN TITAN},
+  journal={http://www.newyorker.com/reporting/2012/09/03/ 120903fa\_fact\_widdicombe}
+}
+@article{cops,
+  title={Cops using YouTube to catch criminals},
+  journal={http://www.afterdawn.com/news/article.cfm/2007/03/04 /cops\_using\_youtube\_to\_catch\_criminals}
+}
+@MISC{cops2,
+    title = {Cops using YouTube to catch criminals},
+	howpublished = {\url{http://www.afterdawn.com/news/article.cfm/2007/03/04/cops_using_youtube_to_catch_criminals}}
+	}
+
+%@inproceedings{cops2,
+%  title={},
+%  author= { }
+%  booktitle={"http://www.afterdawn.com/news/article.cfm/\-2007/03/04/cops_using_youtube_to_catch_criminals"}
+%}
+@article{proof,
+  title={A proof of the triangle inequality for the Tanimoto distance},
+  author={ A.H. Lipkus},
+  journal={Journal of Mathematical Chemistry},
+  volume={26},
+  number={1},
+  pages={263--265},
+  year={1999},
+  publisher={Springer}
+}
+@misc{abcd,
+ title = {International Technology Roadmap For Semiconductors 2011 Design},
+ howpublished = "\url{http://www.itrs.net/Links/2011ITRS/2011Chapters/2011Design.pdf}"
+}
+@MISC{Scooter2,
+    title = {TEEN TITAN},
+	howpublished = "\url{http://www.newyorker.com/reporting/2012/09/03/120903fa_fact_widdicombe}"
+	}
+
+@MISC{flickr,
+    title = {Flickr},
+	howpublished = {\url{http://www.flickr.com}}
+	}
+
+@MISC{ffmpeg,
+    title = {Ffmpeg},
+	howpublished = {\url{http://www.ffmpeg.org}}
+	}
+@MISC{facebook,
+    title = {Facebook},
+	howpublished = {\url{http://www.facebook.com}}
+	}
+
+@MISC{instagram,
+    title = {Instagram},
+	howpublished = {\url{http://www.instagram.com}}
+	}
+@ARTICLE{cedd,
+  title={CEDD: color and edge directivity descriptor: a compact descriptor for image indexing and retrieval},
+  author={S. Chatzichristofis and  Y. Boutalis},
+  journal={Computer Vision Systems},
+  pages={312--322},
+  year={2008},
+  publisher={Springer}
+}
+@inproceedings{fcth,
+  title={Fcth: Fuzzy color and texture histogram-a low level feature for accurate image retrieval},
+  author={ S.A. Chatzichristofis and  Y.S. Boutalis},
+  booktitle={Ninth International Workshop on Image Analysis for Multimedia Interactive Services. WIAMIS'08. },
+  pages={191--196},
+  year={2008},
+  organization={IEEE}
+}
+@inproceedings{acc,
+  title={Image indexing using color correlograms},
+  author={J. Huang and S.R. Kumar and M. Mitra and W.J. Zhu and R. Zabih},
+  booktitle={Proc. of IEEE Computer Society Conference on Computer Vision and Pattern Recognition(CVPR'97) },
+  pages={762--768},
+  year={1997},
+  organization={IEEE}
+}
+
+@inproceedings{jcd,
+  title={Selection of the proper compact composite descriptor for improving content based image retrieval},
+  author={ S.  Chatzichristofis and Y. Boutalis and M. Lux},
+  booktitle={Proc. of the 6th IASTED International Conference},
+  volume={134643},
+  pages={064},
+  year={2009}
+}
+
+@INPROCEEDINGS{imgseek,
+  title={Fast multiresolution image querying},
+  author={C.E. Jacobs and  A. Finkelstein and D.H. Salesin },
+  booktitle={Proc. of the 22nd annual conference on Computer graphics and interactive techniques},
+  pages={277--286},
+  year={1995},
+  organization={ACM}
+}
+@book{fuzzy,
+  title={Fuzzy algorithms: with applications to image processing and pattern recognition},
+  author={Z. Chi and H. Yan and T. Pham},
+  volume={10},
+  year={1996},
+  publisher={World Scientific Publishing Company Incorporated}
+}
+
+@inproceedings{medusa,
+  title={{Medusa: A programming framework for crowd-sensing applications}},
+  author={ M.R. Ra and B. Liu and T.F. La Porta  and R. Govindan },
+  booktitle={Proc. of the 10th international conference on Mobile systems, applications, and services(Mobisys'12)},
+  pages={337--350},
+  year=2012,
+  organization={ACM}
+}
+@ARTICLE{braams:babel,
+	AUTHOR = "Johannes Braams",
+	TITLE = "Babel, a Multilingual Style-Option System for Use with LaTeX's Standard Document Styles",
+	JOURNAL = {TUGboat},
+	VOLUME = {12},
+	NUMBER = {2},
+	PAGES = {291-301},
+	MONTH = "June",
+	YEAR = {1991}	}
+
+@INPROCEEDINGS{clark:pct,
+	AUTHOR = "Malcolm Clark",
+	TITLE = "Post Congress Tristesse",
+	BOOKTITLE = "TeX90 Conference Proceedings",
+	PAGES = "84-89",
+	ORGANIZATION = "TeX Users Group",
+	MONTH = "March",
+	YEAR = {1991}	}
+
+@ARTICLE{herlihy:methodology,
+	AUTHOR = "Maurice Herlihy",
+	TITLE = "A Methodology for Implementing Highly Concurrent
+	Data Objects",
+	JOURNAL = {ACM Trans. Program. Lang. Syst.},
+	VOLUME = {15},
+	NUMBER = {5},
+	PAGES = {745-770},
+	MONTH = "November",
+	YEAR = {1993}	}
+
+@BOOK{Lamport:LaTeX,
+	AUTHOR = "Leslie Lamport",
+	TITLE = "LaTeX User's Guide and Document Reference Manual",
+	PUBLISHER = "Addison-Wesley Publishing Company",
+	ADDRESS = "Reading, Massachusetts",
+	YEAR = "1986"	}
+
+@BOOK{salas:calculus,
+	AUTHOR = "S.L. Salas and Einar Hille",
+	TITLE = "Calculus: One and Several Variable",
+	PUBLISHER = "John Wiley and Sons",
+	ADDRESS = "New York",
+	YEAR = "1978"	}
+
+@book{GarJoh79,
+  AUTHOR    = "M. R. Garey and D. S. Johnson",	  
+  TITLE     = "Computers and Intractability: A Guide to the Theory of {NP}-Completeness",
+  PUBLISHER = "W.H. Freeman and Company",
+  YEAR      = "1979"
+  }
+
+@book{Schedhandbook,
+	AUTHOR = "Blazewicz, Jacek and Ecker, Klaus H. and Pesch, Erwin and 	  Schmidt, Gunter and Weglarz, Jan",	
+	TITLE = "Handbook on Scheduling: From Theory to Applications",
+    PUBLISHER = "Springer",
+    YEAR = "2007"}
+

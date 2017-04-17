@@ -1,0 +1,128 @@
+\begin{abstract}
+
+Motivated by an availability gap for visual media, where images and
+videos are uploaded from mobile devices well after they are generated,
+we explore the \emph{selective,
+  timely retrieval} of media content from a collection of mobile
+devices.
+%
+We envision this capability being driven by \emph{similarity-based
+  queries} posed to a cloud search front-end, which in turn
+dynamically retrieves media objects from mobile devices that best
+match the respective queries within a given time limit.
+%
+Building upon a crowd-sensing framework, we have designed and
+implemented a system called \mscope that provides this capability.
+%
+\mscope is an extensible framework that supports nearest-neighbor and
+other geometric queries on the feature space (e.g., clusters,
+spanners), and contains novel retrieval algorithms that attempt to
+maximize the retrieval of relevant information.
+%
+From experiments on a prototype, \mscope is shown to achieve
+near-optimal query completeness and moderate overhead on mobile
+devices..
+
+\end{abstract}
+
+\section {Introduction}
+Cameras on mobile devices have given rise to significant
+\emph{sharing} of media sensor data (photos and videos).
+%
+Users upload visual media to online social networks like
+Facebook~\cite{facebook}, as well as to dedicated sharing sites like
+Flickr~\cite{Flickr} and Instagram~\cite{instagram}.
+%
+However, these uploads are often not \emph{immediate}.
+%
+Camera sensors on mobile devices have been increasing in both image
+and video resolution far faster than cellular network capacity.
+%
+More important, in response to growing demand and consequent
+contention for wireless spectrum, cellular data providers have imposed
+data usage limits, which dis-incentivize immediate photo uploading and
+create an \emph{availability gap} (the time between when a photo or
+image is taken and when it is uploaded).
+%
+To bridge this availability gap, and to enable this and other missed
+opportunities, we consider a novel capability for selective and timely on-demand
+retrieval of images from mobile devices.
+%
+Specifically, we develop a system called \mscope that permits
+concurrent timely geometric queries in feature space on media data
+that may be distributed across several mobile devices.
+%
+\mscope is an extensible framework that supports different kinds of
+queries.
+%
+\mscope queries permit nearest-neighbor searches on image feature
+spaces, \emph{spanners} that retrieve samples of images that span
+the feature space, or \emph{cluster representatives} that are samples
+of clusters in the feature space.
+%
+\mscope also addresses the timelines and computational complexity issues through the novel concurrent uploading scheme design and accuracy-complexity tradeoff.
+
+
+\section{MediaScope Design}
+MediaScope is a system that supports timely similarity-based queries
+on media objects stored on mobile devices.
+%
+Mediascope is conceptually partitioned across a cloud component called
+MSCloud, and another component called MS\-Mobile that runs on mobile devices.
+%
+This partitioned design leverages the computation and storage power of
+clouds to support geometric queries on the feature space; mobile
+devices provide sensing and storage for media objects.
+
+These components interact as follows (Figure~\ref{fig:architecture}).
+%
+In the background, whenever participants take photos or videos, the
+\emph{Feature Extractor} component of MSMobile continuously extracts
+image and video features and uploads them to the \emph{MSCloudDB}.
+%
+Users (e.g., a security officer or a reporter) pose queries to MSCloud
+using a standard web interface, possibly on a mobile device.
+%
+These queries are processed by the \emph{MSCloudQ} query processing
+engine, which uses the features stored in the MSCloudDB to compute the
+query results.
+%
+The results of the queries identify the media objects that need to be
+retrieved from individual mobile devices.
+%
+In some cases, a media object may already have been retrieved as a
+result of an earlier query; query results are also \emph{cached} in
+MSCloudDB in order to optimize retrieval.
+%
+MSCloudQ coordinates with an \emph{Object Uploader} component on
+MSMobile in order to retrieve query results.
+
+MediaScope uses a publicly available crowd sensing platform called
+Medusa~\cite{Medusa}, to enable programmed interaction between MSCloud and Medusa, and to support MediaScope's timeliness requirement, we made several modifications to Medusa Platform.
+%
+The most challanging component of MediaScope is support for concurrent queries, we designed a \emph{credit assigment mechanism}, the main idea is as follows, each query is awarded a certain amount of credit, and the query itself is responsible for assigned these amount of credit to the qualified objects given by the query optimizer, so each object of uploading request in MSMobile is associated with a credit, MSMobile is going to upload in a way that maximizing the total credit of uploadable objects.
+%
+Our current instantiation of MediaScope supports three qualitatively
+different queries: nearest neighbor, clusters, and spanners. Detailed implementation is discussed in the full paper.
+
+\begin{figure}
+\centering
+\epsfig{file=pics/architecture.eps, width=2.9in, height = 2in}
+\caption{System Architecture Work Flow}
+\label{fig:architecture}
+\vspace{-0.5cm}
+\end{figure}
+
+\begin{figure}
+\centering
+\epsfig{file=pics/queryinterface.eps, width=2.9in, height = 2in}
+\caption{Query Interface}
+\label{fig:interface}
+\vspace{-0.8cm}
+\end{figure}
+
+\section{Demo Details}
+We have built MediaScope prototype system using a commodity server machine and Android smartphones. The query interface of MSCloudQ is shown in Figure~\ref{fig:interface}. This demonstration will show the crucial steps of MediaScope: 1) the mobile device once capture an image, the corresponding feature will be extracted and uploaded to MSCloudDB automatically; 2) when MSCloud received query, it will select best media files and ask for uploading; 3) MSMobile will upload media files selected by MSCloud, and then MSCloud return results. For step 2), it is possible that MSCloud get concurrent queries (in the demo, we will issue multiple queries from different tabs of the browser); consequently, MSMobile will receive concurrent uploading tasks, sometimes this means that not all the uploading tasks can be completely uploaded before its timeliness bound and in this situation, the scheduling is critical for the sake of maximizing information (credit) collected.
+
+\section{Related Work}
+There are some other works focus on search over resources, \cite{sensorranking} deal with people-centric sensor data; however \mscope focuses on image search. \mscope is inspired by leveraging semantics of features \cite{crowdsearch,photonet}, techniques for content-based image retrieval from a centralized database of images \cite{faceted,virage,imgseek} and image retrieval from mobile devices \cite{content1,content2,content3}. Compared to existing works, \mscope uniquely supports searches on a cloud server, but where the content is stored on the mobile devices and is retrieved on demand. 

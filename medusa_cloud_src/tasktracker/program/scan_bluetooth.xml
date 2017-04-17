@@ -1,0 +1,45 @@
+<xml>
+	<app>
+		<name>OBJECT-FINDER</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<timeout>7 hour</timeout>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Bluetooth Scanning App. Demonstration</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>ScanBluetooth</name> <type>SPC</type>
+			<binary>medusalet_netstats</binary>		
+			<trigger>none</trigger> <review>none</review>
+			<config>
+				<params>-i bluetooth -p 30 -c 2</params>
+				<output>BLUETOOTHSCAN</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger>
+			<config>
+				<input>BLUETOOTHSCAN</input>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>ScanBluetooth</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>ScanBluetooth</src> 
+			<dst> <success>UploadData</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>

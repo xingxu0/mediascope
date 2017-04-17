@@ -1,0 +1,188 @@
+\begin{thebibliography}{10}
+
+\bibitem{cops}
+Cops using youtube to catch criminals.
+\newblock {\em http://www.afterdawn.com/news/article.cfm/2007/03/04
+  /cops\_using\_youtube\_to\_catch\_criminals}.
+
+\bibitem{facebook}
+Facebook.
+\newblock \url{http://www.facebook.com}.
+
+\bibitem{flickr}
+Flickr.
+\newblock \url{http://www.flickr.com}.
+
+\bibitem{instagram}
+Instagram.
+\newblock \url{http://www.instagram.com}.
+
+\bibitem{content3}
+I.~Ahmad, S.~Abdullah, S.~Kiranyaz, and M.~Gabbouj.
+\newblock Content-based image retrieval on mobile devices.
+\newblock In {\em Proc. of SPIE}, volume 5684, pages 255--264, 2005.
+
+\bibitem{virage}
+J.~Bach, C.~Fuller, A.~Gupta, A.~Hampapur, B.~Horowitz, R.~Humphrey, R.~Jain,
+  and C.~Shu.
+\newblock The virage image search engine: An open framework for image
+  management.
+\newblock In {\em SPIE Storage and Retrieval for Image and Video Databases IV},
+  pages 76--87, 1996.
+
+\bibitem{Schedhandbook}
+J.~Blazewicz, K.~H. Ecker, E.~Pesch, G.~Schmidt, and J.~Weglarz.
+\newblock {\em Handbook on Scheduling: From Theory to Applications}.
+\newblock Springer, 2007.
+
+\bibitem{hierac}
+D.~Cai, X.~He, Z.~Li, W.~Ma, and J.~Wen.
+\newblock Hierarchical clustering of www image search results using visual,
+  textual and link information.
+\newblock In {\em Proc. of the 12th annual ACM international conference on
+  Multimedia}, pages 952--959. ACM, 2004.
+
+\bibitem{cedd}
+S.~Chatzichristofis and Y.~Boutalis.
+\newblock Cedd: color and edge directivity descriptor: a compact descriptor for
+  image indexing and retrieval.
+\newblock {\em Computer Vision Systems}, pages 312--322, 2008.
+
+\bibitem{fcth}
+S.~Chatzichristofis and Y.~Boutalis.
+\newblock Fcth: Fuzzy color and texture histogram-a low level feature for
+  accurate image retrieval.
+\newblock In {\em Ninth International Workshop on Image Analysis for Multimedia
+  Interactive Services. WIAMIS'08.}, pages 191--196. IEEE, 2008.
+
+\bibitem{jcd}
+S.~Chatzichristofis, Y.~Boutalis, and M.~Lux.
+\newblock Selection of the proper compact composite descriptor for improving
+  content based image retrieval.
+\newblock In {\em Proc. of the 6th IASTED International Conference}, volume
+  134643, page 064, 2009.
+
+\bibitem{content4}
+Y.~Chen, J.~Wang, and R.~Krovetz.
+\newblock Content-based image retrieval by clustering.
+\newblock In {\em Proc. of the 5th ACM SIGMM international workshop on
+  Multimedia information retrieval}, pages 193--200. ACM, 2003.
+
+\bibitem{MMM2}
+M.~Davis, N.~V. House, J.~Towle, S.~King, S.~Ahern, C.~Burgener, D.~Perkel,
+  M.~Finn, V.~Viswanathan, and M.~Rothenberg.
+\newblock Mmm2: mobile media metadata for media sharing.
+\newblock In {\em Proc. of CHI'05 extended abstracts on Human factors in
+  computing systems}, pages 1335--1338. ACM, 2005.
+
+\bibitem{content2}
+M.~Gabbouj, I.~Ahmad, M.~Amin, and S.~Kiranyaz.
+\newblock Content-based image retrieval for connected mobile devices.
+\newblock In {\em Proc. of Second International Symposium on Communications,
+  Control and Signal Processing (ISCCSP)}. Citeseer, 2006.
+
+\bibitem{GarJoh79}
+M.~R. Garey and D.~S. Johnson.
+\newblock {\em Computers and Intractability: A Guide to the Theory of
+  {NP}-Completeness}.
+\newblock W.H. Freeman and Company, 1979.
+
+\bibitem{acc}
+J.~Huang, S.~Kumar, M.~Mitra, W.~Zhu, and R.~Zabih.
+\newblock Image indexing using color correlograms.
+\newblock In {\em Proc. of IEEE Computer Society Conference on Computer Vision
+  and Pattern Recognition(CVPR'97)}, pages 762--768. IEEE, 1997.
+
+\bibitem{imgseek}
+C.~Jacobs, A.~Finkelstein, and D.~Salesin.
+\newblock Fast multiresolution image querying.
+\newblock In {\em Proc. of the 22nd annual conference on Computer graphics and
+  interactive techniques}, pages 277--286. ACM, 1995.
+
+\bibitem{content1}
+J.S.Hare and P.~Lewis.
+\newblock Content-based image retrieval using a mobile device as a novel
+  interface.
+\newblock In {\em Electronic Imaging 2005}, pages 64--75. International Society
+  for Optics and Photonics, 2005.
+
+\bibitem{energy}
+K.~Kumar, Y.~Nimmagadda, Y.~Hong, and Y.~Lu.
+\newblock Energy conservation by adaptive feature loading for mobile
+  content-based image retrieval.
+\newblock In {\em ACM/IEEE International Symposium on Low Power Electronics and
+  Design (ISLPED'08)}, pages 153--158. IEEE, 2008.
+
+\bibitem{proof}
+A.~Lipkus.
+\newblock A proof of the triangle inequality for the tanimoto distance.
+\newblock {\em Journal of Mathematical Chemistry}, 26(1):263--265, 1999.
+
+\bibitem{lire}
+M.~Lux and S.~Chatzichristofis.
+\newblock Lire: lucene image retrieval: an extensible java cbir library.
+\newblock In {\em Proceeding of the 16th ACM international conference on
+  Multimedia}, pages 1085--1088. ACM, 2008.
+
+\bibitem{TagSense}
+C.~Qin, X.~Bao, R.~R. Choudhury, and S.~Nelakuditi.
+\newblock Tagsense: a smartphone-based approach to automatic image tagging.
+\newblock In {\em Proc. of the 9th international conference on Mobile systems,
+  applications, and services(Mobisys'11)}, pages 1--14. ACM, 2011.
+
+\bibitem{Medusa}
+M.~Ra, B.~Liu, T.~L. Porta, and R.~Govindan.
+\newblock {Medusa: A programming framework for crowd-sensing applications}.
+\newblock In {\em Proc. of the 10th international conference on Mobile systems,
+  applications, and services(Mobisys'12)}, pages 337--350. ACM, 2012.
+
+\bibitem{tanimoto}
+T.~Tanimoto.
+\newblock {\em An elementary mathematical theory of classification and
+  prediction}.
+\newblock International Business Machines Corporation, 1958.
+
+\bibitem{photonet}
+M.~Uddin, H.~Wang, F.~Saremi, G.~Qi, T.~Abdelzaher, and T.~Huang.
+\newblock Photonet: a similarity-aware picture delivery service for situation
+  awareness.
+\newblock In {\em IEEE 32nd Real-Time Systems Symposium (RTSS'11)}, pages
+  317--326. IEEE, 2011.
+
+\bibitem{PhotoMap}
+W.~Viana, J.~B. Filho, J.~Gensel, M.~Villanova-Oliver, , and H.~Martin.
+\newblock Photomap: from location and time to context-aware photo annotations.
+\newblock {\em Journal of Location Based Services}, 2(3):211--235, 2008.
+
+\bibitem{gap}
+C.~Wang, L.~Zhang, and H.J.Zhang.
+\newblock Learning to reduce the semantic gap in web image retrieval and
+  annotation.
+\newblock In {\em Proc. of the 31st annual international ACM SIGIR conference
+  on Research and development in information retrieval}, pages 355--362, 2008.
+
+\bibitem{sloccount}
+D.~Wheeler.
+\newblock Sloccount, 2001.
+
+\bibitem{crowdsearch}
+T.~Yan, V.~Kumar, and D.~Ganesan.
+\newblock Crowdsearch: exploiting crowds for accurate real-time image search on
+  mobile phones.
+\newblock In {\em Proc. of the 8th international conference on Mobile systems,
+  applications, and services(Mobisys'10)}, pages 77--90. ACM, 2010.
+
+\bibitem{fast}
+J.~Yang, S.~Park, H.~Seong, H.~Byun, and Y.~Lim.
+\newblock A fast image retrieval system using index lookup table on mobile
+  device.
+\newblock In {\em 19th International Conference on Pattern
+  Recognition(ICPR'08)}, pages 1--4. IEEE, 2008.
+
+\bibitem{faceted}
+K.~Yee, K.~Swearingen, K.~Li, and M.~Hearst.
+\newblock Faceted metadata for image search and browsing.
+\newblock In {\em Proc. of the SIGCHI conference on Human factors in computing
+  systems}, pages 401--408. ACM, 2003.
+
+\end{thebibliography}

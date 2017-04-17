@@ -1,0 +1,49 @@
+<xml>
+	<app>
+		<name>Limiting-Netowrk-Usage</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<timeout>5 hours</timeout>
+		<dlimit>3 M</dlimit>
+
+		<stage>
+			<name>Recruit</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Limiting Network Usage</stmt>
+				<expiration>21:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>GetImages</name> <type>SPC</type>
+			<binary>medusalet_probedata</binary>		
+			<trigger>none</trigger>
+			<config>
+				<params>-type image</params>
+				<output>IMAGES</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger> 
+			<config>
+				<input>IMAGES</input>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Recruit</src> 
+			<dst> <success>GetImages</success> <failure>Recruit</failure> </dst>
+		</connector>
+		<connector>
+			<src>GetImages</src> 
+			<dst> <success>UploadData</success> <failure>GetImages</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+
+

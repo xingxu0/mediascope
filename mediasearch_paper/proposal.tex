@@ -1,0 +1,79 @@
+%===========================================================================
+\documentclass[]{article}
+
+
+\usepackage{amssymb,latexsym,amsmath}     % Standard packages
+\usepackage{algorithm,algorithmic}
+
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{1.0in} \addtolength{\textheight}{1.00in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\topmargin}{-.50in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem/Proof Environments %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Theorem}
+\newenvironment{proof}{\noindent{\bf Proof:}}{$\hfill \Box$ \vspace{10pt}}
+
+
+\begin{document}
+\title{\textbf{CSCI599 Project Proposal} \\ Yurong Jiang, Xing Xu}
+\maketitle
+
+\section{Potential Ideas}
+
+We proposed some potential ideas and still need to refine and finalize our idea. But we might mainly focus on analyzing mobiperf dataset. Some of the ideas are limited by what we can get (like the 1st idea).
+
+\subsection{Study Uplink/Downlink Throughput Performance}
+
+Mobiperf ``should'' have measured uplink/downlink throughput data \cite{mobiperf}, measuring by uploading/downloading bunk data to/from a specific server using TCP connection (did not see in current public data).
+
+By studying this data, we can cluster the measured throughput data by time and carrier (or GGSN), to indicate cellular throughput performance variation. Potentially, we can infer the utilization of cellular network, congestion situation of different time, etc.
+
+Such usage study can infer better policy of carrier, to shift demanded traffic during peak time to more idle time by providing different price for different service time.
+
+\subsection{Traceroute Analysis}
+
+We can actually use the first several hops to infer cellular network infrastructure, by clustering. In \cite{infer}, they used this technique for validation, maybe because the traceroute information is limited? But consider if we have lots of traceroute information, e.g., from each monitored mobile device, then by clustering on first several hops of traceroute might be a more convenient solution.
+
+To avoid private IPs, we can find different route's common hops (ignore first different hops), the common hops maybe starts from GGSN, to the nearby CDN, say Google's CDN or Facebook's CDN, determined by what's the destination of the traceroute. By clustering on common hops, we might get a view of GGSN IP to the CDN that serve this GGSN. Each cluster should be one GGSN for each carrier.
+
+\subsection{Ping, traceroute behavior over Cellular network infrastructure}
+We found in logs from mobiperf database shows that RTT doesn't corresponding to the hop number, such as hop0's RTT is 34ms, however, hop10's RTT is only 30ms. Intuition is hop's RTT should positively correlate with hop number, especially from the paper we read~\cite{infer} told us that GGSN is the first hop and the unavoidable hop for cell phone to connect to the Internet, so the higher hop number, the larger RTT. But why this RTT disorder happened, is this due to some factors in the middle box~\cite{untold}, or these 10\% difference is normal. To investigate this, we compare ping RTT, with traceroute RTT, are they functioning the same way or not? We are going to use the data from mobiperf \cite{mobiperf}, to find out whether this phenomenon is common or not, and if this is really a problem, we need to figure the problem behind, what's the real RTT.
+
+\subsection{Cellular Data Network Infrastructure}
+
+By using ip and geo-location pair, we can re-do the inferring of coverage of GGSN. The only information we need is the (current) ip, geo-location (with carrier name, of course) pair. (However, again, we did not see ip information in public data.)
+
+Same technique can be used (clustering geo-coverage of ip prefixes), and available traceroute data can be used to validate the clustering results.
+
+\subsection{Traffic Analysis over cellular}
+Some video talk apps like skype, facetime become prevalent and with the development of cellular networks, they can support these app fluently. However, sometimes, we usually encounter some jitters through the cellular network. We want to study whether the policy inside the carrier, say in NAT, firewall\cite{untold} has effects on these performance. So a start point for this is from tcp connection establishment, and what's the traffic pattern during the jittering. Generally, we are going to start with the following steps 
+
+\begin{itemize}
+ \item Run tcpdump on Android, log the packet patterns for end2end video talk(skype video conference) over ATT network.
+ \item See if we can get current LTE behavior in NAT and firewall
+ \item Understand how packet get lost during the video call. 
+ \item Find out any route changes happened. 
+\end{itemize}
+
+\section{Timeline}
+
+We will refine and narrow our thinkings, finalize a direction and do initial measurements in 2 weeks.
+
+\begin{thebibliography}{20}
+
+\bibitem{mobiperf} MobiPerf: Mobile Network Measurement System,\\\small{http://s3.amazonaws.com/challengepost/zip\_files/production/1395/zip\_files/paper.pdf?1306966494}
+
+\bibitem{infer} Cellular Data Network Infrastructure Characterization and Implication on Mobile Content Placement, by Qiang Xu, Junxian Huang, Zhaoguang Wang, Feng Qian, Alexandre Gerber, and Z. Morley Mao, Proceedings of SIGMETRICS 2011
+
+\bibitem{untold} An untold story of middleboxes in cellular networks, Wang, Zhaoguang and Qian, Zhiyun and Xu, Qiang and Mao, Zhuoqing and Zhang, Ming, SIGCOMM-Computer Communication Review ,2011
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,366 @@
+%===========================================================================
+\section{IPSN 2013 Review \#53A}
+\begin{itemize}
+\item 
+\begin{itemize}
+\item \textbf{Q: }Experiments do not clearly show that you get the
+  right answers to queries there is some evidence (by example more
+  than a complete eval.) but it could be greater
+\item \textbf{A: }This is a good observation. There are two sources of
+  errors in responses; one is the semantic gap where feature-based
+  search has inherent limitations. The other is that our uploading
+  algorithm may not provide the best possible answer given the
+  timeliness constraints. We will try to quantify the latter.
+\end{itemize}
+\item 
+\begin{itemize}
+\item \textbf{Q: }Are real-time features really necessary?
+\item \textbf{A: }Timeliness may be critical in some scenarios (e.g.,
+  military settings). In other cases, timeliness can ensure service
+  interactivity (in much the same way as service level agreements on
+  latency in Web services ensure low user-perceived delay), which can
+  be a crucial differentiator for search.
+\end{itemize}
+\item 
+\begin{itemize}
+\item \textbf{Q: }What apps have timeliness requirements and do they
+  match the 10sec that you support?  I like including feature
+  extraction but this can be a difficult problem. Perhaps more
+  discussion of this issue is needed?
+\item \textbf{A: }We will try to add a discussion along the lines of
+  the answer to the previous question.
+\end{itemize}
+\item 
+\begin{itemize}
+\item \textbf{Q: }Is top-K really the top k? What if mobile device is
+  not available when the query is issued?
+\item \textbf{A: }This is a good point; we will clarify that the
+  semantics of the top-K are that it is the top-K among the
+  available devices (as in any distributed database).
+\end{itemize}
+\item 
+\begin{itemize}
+\item \textbf{Q: }I am not sure that the importance of a result object
+  to a query can be determined by the feature space geometry.  This
+  needs to be validated and is likely to depend on the features
+  selected for a given image.  Do the images that span the feature
+  space really do that?
+\item \textbf{A: }This is a good point. It is generally well
+  understood that there exists a semantic gap in similarity search
+  based on feature space; features cannot always precisely
+  characterize semantic similarity. So, the best we can say is that
+  our approach would provide the right answers if no such semantic
+  gap existed. To properly validate our approach, a large user study
+  on an existing corpus is necessary, since which images ``span'' a
+  corpus can be highly subjective. This is, of course, beyond the
+  scope of the paper, but we will clarify this.
+\end{itemize}
+\end{itemize}
+
+
+%===========================================================================
+\section{IPSN 2013 Review \#53B}                  
+
+\begin{itemize}
+\item
+\begin{itemize}
+\item \textbf{Q: } Clients need to continuously upload "features" of
+  their media contents even if they are never queried for.  Even
+  though individual features can be small, collectively they can
+  impose a big overhead. Authors do not evaluate this
+\item \textbf{A: } Good point, we will add some numbers for this.
+\end{itemize}
+\item
+\begin{itemize}
+\item \textbf{Q: }Authors focus a lot on scheduling uploads. While
+  this is a good problem to solve, this is probably not the most
+  important problem to solve. There are other more important problems
+  such as user incentives, quality, etc. that authors do not talk
+  about.
+\item \textbf{A: }We will point out that some of our prior work has
+  addressed incentives (e.g., Medusa), and quality improvements will
+  come from work in the image processing community on better
+  features. While our work may not be the most important problem to
+  solve, it fills a needed gap. We will acknowledge this in the paper.
+\end{itemize}
+
+
+\item
+\begin{itemize}
+\item \textbf{Q: }The query processing in MS happens at the
+  server. For that, the server needs to have global knowledge about
+  all media contents in all devices. This is made possible by mobile
+  devices continuously uploading "features" of their own media, even
+  some of the media may not ever been queried for. Even though the
+  features can be small, for a device with many media files, the
+  communication overhead can be large. Authors should evaluate this.
+\item \textbf{A: } We will quantify this.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: } Authors use CEDD features of media. Why CEDD? Is
+  CEDD selected only for its small size? Is it a good feature for the
+  three types of queries discussed in the paper? Can the proposed
+  techniques be used with other types of features such as keypoints?
+\item \textbf{A: } In doing this work, we evaluated other feature
+  extraction algorithms. We will add a discussion of the suitability
+  of these other algorithms, as well as key points based similarity
+  search.
+\end{itemize}
+   
+\item
+\begin{itemize}
+\item \textbf{Q: } Usefulness of MS, especially quality and
+  completeness of its results, can be subjective. For example, when a
+  user asks for k nearest-neighbor pictures of a given picture, the
+  results returned my MS may be mathematically correct (in terms of
+  CEDD features and distances of the features); however, users may
+  consider some other pictures in the database more relevant than the
+  ones in the results (which might imply that CEDD is not the right
+  feature space to consider). A user study might be useful to answer
+  this.
+\item \textbf{A: } Indeed, please see the discussion above. We will
+  explain this.
+\end{itemize}
+\end{itemize}
+%===========================================================================
+ \section{IPSN 2013 Review \#53C}
+                 
+\begin{itemize}
+\item
+\begin{itemize}
+\item \textbf{Q: }There is no definition of the timeliness metric
+  which is central to the proposed approach, thus it is not clear what
+  is the goal with respect to meeting the timeliness demands of the
+  different queries. I have several queries in the working of the
+  proposed credit-based scheduling algorithm.
+\item \textbf{A: } The timeliness of a query is defined relative to
+  when the query was issued; we will make this clear.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: } The case about the availability gap made by the
+  authors looks made up to me, as the sample Flickr user size they use
+  is very small, it is not clear when this sample was taken, and there
+  may be different reasons for delaying an upload of images on social
+  networks, we are not sure whether the same users would choose to do
+  that even if WiFi connectivity was available to them.
+\item \textbf{A: } We will clarify when the sample was taken, and
+  add a discussion of the methodology. The actual shape of the
+  availability gap distribution may change over time, but our work
+  will become obsolete only if *everyone* uploads *all* their pictures
+  in a timescale less than an interactivity requirement (a few
+  seconds). Given the trends in the cellular industry, and the cost of
+  ensuring WiFi coverage everywhere, we do not see this happening soon.
+  We will clarify this.
+\end{itemize}
+    
+\item
+\begin{itemize}
+\item \textbf{Q: }There is no definition of the timeliness metric.  Is
+  timeliness a relative or absolute value?  Does it involve the time
+  to propagate the query to the MSCloudQ and the time to process the
+  queries at the MSCloudQ or it refers only to the propagation time?
+  You cannot talk about meeting timeliness constraints if a concrete
+  definition of what is the timeliness criterion is not given in the
+  paper.
+\item \textbf{A: } Please see answer above. We will clarify this.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: }It is not clear how the timeliness criteria is used
+  in the queries.  Is this defined from the time the query is issued
+  on the mobile phone until the time the operation is completed? How
+  does the user know whether the operation is completed, for example,
+  if the query is an "upload object"?  Furthermore, when there are
+  concurrent queries issued by different devices, how are the
+  timeliness values affected?  What is the overall goal with respect
+  to timeliness?
+\item \textbf{A: }We will clarify this.
+\end{itemize}
+
+
+\item
+\begin{itemize}
+\item \textbf{Q: }Admission control techniques work quite well under
+  the assumption that since not all queries cannot be satisfied, they
+  impose a constraint based on the order with which the queries are
+  issued.  The authors claim that they use a credit assignment
+  mechanism, and although this mechanism is central to the working of
+  the proposed approach, no such mechanism is given by the authors
+  (they say is beyond the scope of the paper).
+\item \textbf{A: } We see the credit-based approach as being
+  complementary to admission control. The latter would select which
+  queries are satisfied, whereas our approach attempts to satisfy each
+  query to the extent possible by prioritizing which images to
+  retrieve based on importance to the query. We will clarify this.
+\end{itemize}
+   
+\item
+\begin{itemize}
+\item \textbf{Q: }The K-nearest neighbors and K clustering techniques
+  are well-known techniques in the literature.The spanner algorithm
+  looks interesting, but it is not well developed.  For example, how
+  do you determine $s_t$ based on timeliness and uploading rates?  How
+  do you estimate the uploading rate of a mobile device? More
+  importantly, what happens when users move and as a result the
+  uploading rate can vary?  I understand that you need to sample the
+  uploading rate periodically.  What is the overhead for doing that?
+\item \textbf{A: }We will clarify the method for estimating the
+  upload rate, and its overhead.
+  \end{itemize}
+  
+\item
+\begin{itemize}
+\item \textbf{Q: } In the credit-based scheduling algorithm, how do
+  you define the importance of the query? The algorithm runs over a
+  time window, by looking at the credits over this window, or the
+  credits are instantaneous credits?  When you say "if two different
+  queries retrieve the same object from Pk, that object is uploaded
+  only once if it is uploaded at all" does it matter who uploads the
+  object?
+\item \textbf{A: }Credits are fixed. Queries can have different total
+  credits, assuming that the user wants to pay different amounts of
+  money for their query.  We mean, two different queries asked for the
+  same media file from one mobile device, then the mobile device will
+  upload only once. We will clarify this.
+  \end{itemize}
+  
+\item
+\begin{itemize}
+\item \textbf{Q: } Running a local credit-maximizing scheduler on
+  individual devices clearly does not suffice, as the time to retrieve
+  an object largely depends on the load on the MSCloudQ and the time
+  it takes to execute the query and return the results.
+\item \textbf{A: } The latency bottleneck is not so much in the cloud
+  query processing, as it is in uploading the actual images. We will
+  clarify this.
+ \end{itemize}
+ \end{itemize}
+%===========================================================================
+\section{IPSN 2013 Review \#53D}
+
+\begin{itemize}
+
+\item
+% \begin{itemize}
+% \item \textbf{Q: } The addressed scenario is interesting and the
+%   research in this direction carries the promise of real impact.  This
+%   scenario includes several interesting topics.  - what set of
+%   features is used to identify the "image of interest".
+% \item \textbf{A: } In our work, we define "distance" among images, any
+%   feature supporting distance calculation will work.
+%  \end{itemize}
+ 
+\item
+\begin{itemize}
+\item \textbf{Q: } The feature extraction method used by the "smart
+  phone" has to be identical to the one used by the "source of
+  query". How is the "semantic" of the feature extraction method
+  transmitted with the query?
+\item \textbf{A: } We will clarify this: the smartphone can add a tag
+  to its features specifying its feature extraction method, so that
+  the querier can apply the same method.
+ \end{itemize}
+ 
+\item
+\begin{itemize}
+\item \textbf{Q: } Extensive search of all the images/all the parts of
+  a video available on a smart phone might really lead to extensive
+  complexity. How can this be simplified? Any approaches for "quick
+  and dirty" pre- selection?
+\item \textbf{A: } Right. One promising approach is to use video
+  segmentation (breaking a video into scenes) and then picking a
+  representative image from each scene. We have left this to future
+  work, but will discuss this solution.
+ \end{itemize}
+ 
+\item
+\begin{itemize}
+\item \textbf{Q: } Are there really reliable approaches to classify
+  the probability of hit?  all this issues seem to be addressed only
+  marginally. In fact the main focus is placed on the scheduling of
+  the uploads. But the paper is missing a clear argument that this is
+  really the bottleneck! The pure fact that the "caps" imposed within
+  the mobile internet access plans provide incentives for delayed
+  upload, does NOT lead to the conclusion that there is a bottleneck
+  in the uploads...
+\item \textbf{A: } Our approach is targeted towards a situation where
+  the answers to a query are so numerous that the corresponding images
+  cannot be retrieved in time given the available mobile bandwidth.
+  We will clarify this.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: } why should there be so many "search queries" in
+  parallel? Within the same area, involving smart phones within the
+  same cell?  All this is open, not addressed, ....
+\item \textbf{A: } We will clarify this. In the limit, if such a
+  service becomes very popular, there will be with many concurrent
+  queries. For our solution to be useful, the queries need not come
+  from the same area or involve phones on the same cell.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: } Therefore the focus on the scheduling, exposing
+  this as a main issue seems artificial ....  especially as there are
+  no suggestions as for the utility functions which might be used.
+\item \textbf{A: } In a previous comment, we have discussed why upload
+  scheduling is one of the problems, not the only problem. We will
+  address this.
+\end{itemize}
+\end{itemize}
+
+%===========================================================================
+\section{IPSN 2013 Review \#53E}
+
+\begin{itemize}
+\item
+\begin{itemize}
+\item \textbf{Q: } The feature extraction is a simple application of
+  existing approaches. The image query types are not new, but are
+  presented as if they are novel, without citations.
+\item \textbf{A: } We will clarify this. Our claim is not that the
+  queries are new, but that enabling them over a collection of smart
+  phones is new.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: } The evaluation is lacking in its breadth. Only 8
+  phones were used in the evaluation with a small number of photos
+  that do not come from a standard data set. The number of
+  concurrently executed queries ranged from 4 to 6. This is a small
+  scale evaluation. A simulation based evaluation could have been used
+  for a larger-scale evaluation, with this small-scale physical
+  evaluation to validate the results. It also would be interesting to
+  compare other aspects of this approach (overhead and latency, for
+  example) to admission-based approaches that always achieve 100\%
+  query completeness.
+\item \textbf{A: } These are definitely valid suggestions; we will
+  point these out as directions for future work.
+\end{itemize}
+
+\item
+\begin{itemize}
+\item \textbf{Q: }Figures that illustrate the problem and algorithm,
+  rather than textual examples, would be helpful earlier in the paper.
+\item \textbf{A: } We will try to add this if space permits.
+\end{itemize}
+    
+\item
+\begin{itemize}
+\item \textbf{Q: }The example about the talent scout seems contrived
+  -- what image features in a feature vector could be useful to help a
+  talent scout find talent in an image (or even features in the image
+  frames that make up a video)?  This example isn't necessary to
+  highlight the usefulness of MobiScope.
+\item \textbf{A: }We will replace this example.
+\end{itemize}
+\end{itemize}
+    

@@ -1,0 +1,30 @@
+<xml>
+	<app>
+		<name>Overhead</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Overhead Testing</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>HelloWorld</name> <type>SPC</type>
+			<binary>medusalet_helloworld</binary>		
+			<trigger>none</trigger> 
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>HelloWorld</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+

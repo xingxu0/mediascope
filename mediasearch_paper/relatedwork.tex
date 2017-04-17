@@ -1,0 +1,98 @@
+\vspace*{-1ex}
+\section{Related Work}
+\label{sec-5}
+
+Perhaps the closest related piece of work to MediaScope is
+CrowdSearch~\cite{crowdsearch}, which attempts to search for the
+closest match image generated on a mobile device from among a set of
+images stored on a photo sharing service.
+%
+Its focus, however, is complementary to MediaScope, and is on bridging
+the semantic gap inherent in feature-based image searches; most
+feature extraction methods do not understand the semantics of images,
+and CrowdSearch focuses on using human intelligence in near real-time
+to complete search tasks.
+%
+MediaScope can use this capability to filter search results to bridge
+the semantic gap, but its focus is on supporting a richer query
+interface and enabling tighter timeliness constraints than might be
+possible with humans in the loop.
+
+Also closely related is PhotoNet~\cite{photonet}, which
+proposes an opportunistic image sharing and transmission capability in
+a delay tolerant network.
+%
+PhotoNet uses similar image features to perform photo comparisons, but
+is otherwise very different from MediaScope in that the latter
+explicitly supports a query interface with timeliness constraints on queries.
+% is a centralized system that metadata are
+% aggregated to the server, avoid the peer-to-peer communication
+% overhead.
+%
+
+MediaScope is informed and inspired by several pieces of work on
+techniques for content-based image retrieval, and image search on
+mobile devices.
+
+In the former category are systems like Faceted Image Search
+~\cite{faceted}, the Virage Image Search Engine~\cite{virage} and
+ImgSeek~\cite{imgseek}, that support searches on a centralized
+database of images.
+%
+\mscope builds upon these search techniques, but unlike them, supports
+timely geometric queries over a distributed database of images and
+videos on mobile devices.
+%
+Other work in content-based image retrieval has proposed
+clustering~\cite{hierac,content4}, but has not explored the mobile
+device setting.
+
+% Moreover, these only support best match queries since they use
+% similarity measures like the Tanimoto distance\cite{cedd,fuzzy} which
+% does not correspond to a metric space.
+% %
+% \mscope builds upon these search techniques, but uses a metric
+% distance and so can support timely geometric queries over a
+% distributed database of images and videos on mobile devices.
+
+
+% \cite{tinydb} proposed a query processor for sensor networks, compared with \mscope, sensor has much less processing power and less stable system than current advanced smart phones. Besides, MSMobile in \mscope also support multi-media processing that further abstract the data other than purely passive database.
+
+A second category of work has explored support for image search on a
+mobile device.
+%
+For example, ~\cite{energy} discusses energy efficient feature
+extraction on a mobile device but supports on the local searches on
+the device, as does~\cite{fast}.
+%
+Other pieces of work have explored a client/server architecture for
+image search, but where the content is stored on the
+server~\cite{content1,content2,content3}.
+%
+By contrast, \mscope supports searches on a cloud server, but where
+the content is stored on the mobile devices and is retrieved on
+demand.
+
+Finally, tangentially related to MediaScope is work on automated or
+semi-automated annotation of images with context obtained from sensors
+~\cite{MMM2,PhotoMap,TagSense}.
+%
+MediaScope can use such annotations to support a broader range of
+queries, but we have left this to future work.
+
+% Another category of work is about image retrieval on mobile devices. In \cite{energy}, they have the similar idea of implementing CBIR algorithm on phone, they tried to improve the energy consumption for ImgSeek\cite{imgseek} by minimizing number of features for comparison on mobile phone, however, the heavier part of ImgSeek\cite{imgseek} is on feature extraction, but  \mscope moved the feature comparison part to cloud. Moreover, \cite{energy} only support local image search on phone, which turns out not useful compared to \mscope.  In \cite{fast}, authors also proposed a fast content retrieval scheme for mobile devices and support three different queries, compared with \mscope, their application is constrained on a single mobile phone, without information sharing, and their different queries are in fact the same scheme with traditional image search with feature extraction on different input images.   \cite{content1}\cite{content2}\cite{content3}  also introduce the image search with a cloud-client architecture, but it only uses phone as a client to search the content on the server.
+
+% MMM2\cite{mmm2} is an early piece of work that aimed at lightweight photo sharing, however it needs to upload the images to a server that processes the image and returns metadata  for sharing, which is the way \mscope want to avoid(uploading to server)
+
+% PhotoMap\cite{photomap} is another system that intends to provides  semi-automatic annotation about spatial related information of photos for mobile phones, which is already a usual characteristic of current smart phone. \mscope goes far beyond that, since \mscope automatically extract the photo and video features.
+
+
+
+% In TagSense\cite{tagsense}, the authors described a system that tagging the people who appear in  photos by phone-to-phone communication, which needs all people runs the service. The CBIR tagging service in  \mscope is a more natural way in vision society, and \mscope also achieves the goal of automatic media file feature extraction, which overcomes their method.
+
+% Finally, the queries we designed in \mscope are inspired by prior work. Clustering is widely used for content based image search\cite{hierac}\cite{content4}. \mscope provides a more high level conceptual search, which is not discussed before.
+
+% \begin{itemize}
+% \item Image Search
+% \item UIUC related work, other mobile papers
+% \end{itemize}

@@ -1,0 +1,90 @@
+<xml>
+	<app>
+		<name>Auditioning</name>
+
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<rwid>[AMT Requestor Worker ID]</rwid> 
+		<timeout>7 hour</timeout>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Recruiting for Audition App.</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>SyncENV</name> <type>SPC</type>
+			<binary>medusalet_helloworld</binary>		
+			<trigger>none</trigger>
+		</stage>
+		<stage>
+			<name>FeePayment</name> <type>HIT</type>
+			<rid>W_RID</rid> <rkey>W_RKEY</rkey> <wid>R_WID</wid>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Audition Fee Payment.(100 dollars)</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>100</reward>
+			</config>
+		</stage>
+		<stage>
+			<name>MakeVideo</name> <type>SPC</type>
+			<binary>medusalet_mediagen</binary>		
+			<trigger>user-initiated</trigger>
+			<config>
+				<params>-t video</params>
+				<output>VIDEO</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadVideo</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>immediate</trigger> <review>yesno</review>
+			<config>
+				<input>VIDEO</input>
+			</config>
+		</stage>
+		<stage>
+			<name>Evaluation</name> <type>HIT</type>
+			<rid>W_RID</rid> <rkey>W_RKEY</rkey> <wid>R_WID</wid>
+			<binary>vote</binary>
+			<config>
+				<stmt>Evaluation Press. If you like the video, press Yes. Otherwise No.</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.01</reward>
+				<numusers>1</numusers>
+				<input>VIDEO</input>
+				<output>RESULT</output>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>SyncENV</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>SyncENV</src> 
+			<dst> <success>FeePayment</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>FeePayment</src> 
+			<dst> <success>MakeVideo</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>MakeVideo</src> 
+			<dst> <success>UploadVideo</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>UploadVideo</src> 
+			<dst> <success>Evaluation</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+
+

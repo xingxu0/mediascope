@@ -1,0 +1,87 @@
+<xml>
+	<app>
+		<name>Face Detection for Surveillance</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<timeout>5 hours</timeout>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>Face Detection for Surveillance.</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>GetImages</name> <type>SPC</type>
+			<binary>medusalet_probedata</binary>		
+			<trigger>none</trigger>
+			<config>
+				<params>-type image -from 20111208 -to 20111216T180000 -limit 10</params>
+				<output>IMAGES</output>
+			</config>
+		</stage>
+		<stage>
+			<name>GetFaces</name> <type>SPC</type>
+			<binary>medusalet_facedetect</binary>		
+			<trigger>none</trigger>
+			<config>
+				<input>IMAGES</input>
+				<output>FACES</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadFaces</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger> 
+			<config>
+				<input>FACES</input>
+			</config>
+		</stage>
+		<stage>
+			<name>Curating</name> <type>HIT</type>
+			<binary>vote</binary>
+			<config>
+				<stmt>Judging based on Faces</stmt>
+				<expiration>18:00:00 12/16/2011</expiration>
+				<reward>.01</reward>
+				<numusers>1</numusers>
+				<input>FACES</input>
+				<output>$BITMASK</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger> 
+			<config>
+				<input>$BITMASK,IMAGES</input>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>GetImages</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>GetImages</src> 
+			<dst> <success>GetFaces</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>GetFaces</src> 
+			<dst> <success>UploadFaces</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>UploadFaces</src> 
+			<dst> <success>Curating</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>Curating</src> 
+			<dst> <success>UploadData</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+

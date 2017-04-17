@@ -1,0 +1,48 @@
+<xml>
+	<app>
+		<name>ROGUE-FINDER</name>
+		<rrid>[AMT Requestor ID]</rrid>
+		<rrkey>[AMT Requestor Key]</rrkey>
+		<timeout>7 hour</timeout>
+		<cmdpush>sms</cmdpush>
+
+		<stage>
+			<name>Hiring</name> <type>HIT</type>
+			<binary>recruit</binary>
+			<config>
+				<stmt>WiFi Scanning App. Demonstration</stmt>
+				<expiration>18:00:00 04/20/2012</expiration>
+				<reward>.05</reward>
+				<output>W_WID</output>
+			</config>
+		</stage>
+		<stage>
+			<name>ScanWiFi</name> <type>SPC</type>
+			<binary>medusalet_netstats</binary>		
+			<trigger>none</trigger> <review>none</review>
+			<config>
+				<params>-i wifi -f bssid,level -p 10 -c 3</params>
+				<output>WIFISCAN</output>
+			</config>
+		</stage>
+		<stage>
+			<name>UploadData</name> <type>SPC</type>
+			<binary>medusalet_uploaddata</binary>		
+			<trigger>none</trigger> <review>yesno</review>
+			<config>
+				<input>WIFISCAN</input>
+			</config>
+		</stage>
+
+		<connector>
+			<src>Hiring</src> 
+			<dst> <success>ScanWiFi</success> <failure>Hiring</failure> </dst>
+		</connector>
+		<connector>
+			<src>ScanWiFi</src> 
+			<dst> <success>UploadData</success> <failure>Hiring</failure> </dst>
+		</connector>
+	</app>
+</xml>
+
+

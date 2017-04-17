@@ -1,0 +1,67 @@
+\begin{thebibliography}{10}
+
+\bibitem{facebook}
+Facebook.
+\newblock \url{http://www.facebook.com}.
+
+\bibitem{flickr}
+Flickr.
+\newblock \url{http://www.flickr.com}.
+
+\bibitem{instagram}
+Instagram.
+\newblock \url{http://www.instagram.com}.
+
+\bibitem{sensorranking}
+B.~M. Elahi, K.~Romer, B.~Ostermaie, M.~Fahrmair, and W.~Kellerer.
+\newblock Sensor ranking: A primitive for efficient content-based sensor
+  search.
+\newblock In {\em Proc. of ACM Information Processing in Sensor Networks
+  (IPSN)}, pages 217--228. ACM, 2009.
+
+\bibitem{content2}
+M.~Gabbouj, I.~Ahmad, M.~Amin, and S.~Kiranyaz.
+\newblock Content-based image retrieval for connected mobile devices.
+\newblock In {\em Proc. of Second International Symposium on Communications,
+  Control and Signal Processing (ISCCSP)}. Citeseer, 2006.
+
+\bibitem{imgseek}
+C.~Jacobs, A.~Finkelstein, and D.~Salesin.
+\newblock Fast multiresolution image querying.
+\newblock In {\em Proc. of the 22nd annual conference on Computer graphics and
+  interactive techniques}, pages 277--286. ACM, 1995.
+
+\bibitem{content1}
+J.S.Hare and P.~Lewis.
+\newblock Content-based image retrieval using a mobile device as a novel
+  interface.
+\newblock In {\em Electronic Imaging 2005}, pages 64--75. International Society
+  for Optics and Photonics, 2005.
+
+\bibitem{Medusa}
+M.~Ra, B.~Liu, T.~L. Porta, and R.~Govindan.
+\newblock {Medusa: A programming framework for crowd-sensing applications}.
+\newblock In {\em Proc. of the 10th international conference on Mobile systems,
+  applications, and services(Mobisys'12)}, pages 337--350. ACM, 2012.
+
+\bibitem{photonet}
+M.~Uddin, H.~Wang, F.~Saremi, G.~Qi, T.~Abdelzaher, and T.~Huang.
+\newblock Photonet: a similarity-aware picture delivery service for situation
+  awareness.
+\newblock In {\em IEEE 32nd Real-Time Systems Symposium (RTSS'11)}, pages
+  317--326. IEEE, 2011.
+
+\bibitem{crowdsearch}
+T.~Yan, V.~Kumar, and D.~Ganesan.
+\newblock Crowdsearch: exploiting crowds for accurate real-time image search on
+  mobile phones.
+\newblock In {\em Proc. of the 8th international conference on Mobile systems,
+  applications, and services(Mobisys'10)}, pages 77--90. ACM, 2010.
+
+\bibitem{faceted}
+K.~Yee, K.~Swearingen, K.~Li, and M.~Hearst.
+\newblock Faceted metadata for image search and browsing.
+\newblock In {\em Proc. of the SIGCHI conference on Human factors in computing
+  systems}, pages 401--408. ACM, 2003.
+
+\end{thebibliography}

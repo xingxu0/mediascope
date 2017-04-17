@@ -1,0 +1,50 @@
+\section{AAA}
+The fourth query in our system is Spanner: Most distinct
+object Set, the intuition behind this query is that com-
+mander may be interested in the total information con-
+tained by the available data. We wish to select a set of media
+objects that collectively contain the most information. We define this is a rigorous way in the following.
+
+\textbf{Step 1:} 
+Assume the metadata universe, i.e. all pieces of metadata from all query-relevant photos is comprised of the set $I=\{i_1,\ldots,i_n\}$. A photo or information set $J$ is a subset of $I$.  Assume there are $m$ users.  User $k$'s smartphone has $r_k$ photos.  Denote the photo set of user $k$ by $P_k$. Let photo $p_{kj}$ denote photo $j$ from user $k$.  We wish to select $s_k\le r_k$ photo's from user $k$, $k\in\{1,\ldots,m\}$ such that we maximize the information obtained, i.e. the cardinality of the union of the information sets selected.  We may assume WLOG that $s_k=1$ for each $k$.  If $s_k>1$, we may make $s_k$ copies of user $k$'s photo set.  If $s_k=0$, we may ignore the photo set. We can represent this problem by the following integer program:
+
+
+\begin{align}
+\max \text{     }    & \notag
+              \sum_{i=1}^n y_i \\
+\text{s.t.     }  & \label{ineq1}
+              \sum_{j=1}^{r_k} x_{kj}\le 1    & k\in \{1,\ldots ,m\} \\  
+              & \label{ineq2}
+              y_i\le \sum_{i\in p_{kj}} x_{kj}           & i\in\{1,\ldots ,n\} \\
+              &\notag
+             y_i, x_{kj} \in\{0,1\}        & \forall i,j,k\\
+\end{align}
+
+The variables $y_i$ $i=1,\ldots,n$ are indicator variables for selecting the $i$-th element.  The variables $x_{kj}$ are indicator variables for selecting the $j$-th set from photo set $k$.  Inequality ~\ref{ineq1} assures that at most one photo is selected from each photo set.  Inequality ~\ref{ineq2} assures that if no set is selected containing element $i$, then element $i$ is not selected.
+
+Note that this problem is NP-hard as it is a generalization of the maximum coverage problem, which is NP-hard.
+The following greedy algorithm from [] is a 2-approximation for the stated problem.  The idea behind the greedy algorithm is as follows: for each photo set from which a photo has not already been selected,  select the photo which covers the maximum number of uncovered elements, breaking ties arbitrarily. For a given round, select the photo out of these maximal photos which covers the largest number of uncovered elements.  Remove these elements from consideration in future rounds, and remove this photo set from consideration in future rounds.
+
+\begin{algorithm}[H]
+\caption{: \textsc{Greedy}}
+\label{alg:greedy} 
+\begin{small}
+\begin{algorithmic}[1]
+\STATE $H\leftarrow \emptyset$, $I'\leftarrow I$
+\WHILE{a set has not been selected from every $P_k$} 
+	\FORALL{Users $k\in\{1,\ldots,m\}$}
+		\IF{a set has not already been added to $H$ from $P_k$}   		
+   			\STATE $G_k\leftarrow \max\{P_k,I'\}$
+   		\ELSE
+   			\STATE $G_k\leftarrow \emptyset$
+   		\ENDIF
+   	\ENDFOR
+	\STATE $r\leftarrow\text{argmax}_i |G_i|$
+	\STATE $H\leftarrow H\cup\{G_r\}$, $I'\leftarrow I'-G_r$ 
+\ENDWHILE
+\end{algorithmic}
+\end{small}
+$\textbf{OUTPUT}$: $H$
+\end{algorithm}
+
+\textbf{Step 2}:  The credit assignment for the photos is clear.  Assign each photo the credit equivalent to the number of pieces of relavent metadata it contains.

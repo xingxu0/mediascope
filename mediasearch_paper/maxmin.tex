@@ -1,0 +1,98 @@
+
+\section{xxx}
+\mypar{Spanner.}
+%
+The third, and qualitatively different query that MediaScope supports
+is based on spanning the feature space.
+%
+The intuition behind the query is to return a collection of images
+which \emph{span} the feature space.
+%
+Each user has a collection of relevant images.  The commander would like to receive all relevant images from each user, but due to deadline constraints, this is not feasible.  Therefore, we assume that user $t$ uploads exactly $s_t$ images.  Each pair of images has a dissimilarity metric associated with it.  The commander would like to receive a subset of images, which maximizes the minimum dissimilarity between all pairs, with the intuition that such an objective returns a collection of photos which span the feature space.
+
+We now express this problem mathematically.  Assume that $K_n$, the complete graph on $n$ vertices (vertices
+represent images), has a vertex set $V$ which is partitioned into $C$
+classes $V_{1},\ldots,V_{C}$ (classes represent users).
+%
+Let $v_{i_t}$ denote vertex $i$ in class $V_t$.
+%
+Let $e_{i_t j_k}$ represent the edge connecting $v_{i_t}$ with
+$v_{j_k}$.
+%
+Assume edge $e_{i_tj_k}$ has weight $w_{i_tj_k}$ (where the weight
+represents the dissimilarity between objects $i_t$ and $j_k$). 
+
+Assuming that exactly $s_t$ vertices must be selected from $V_t$, select a set of vertices so that the minimum edge weight of the selected clique is maximized.  This problem can be formulated as a mixed-integer program(general we find that all files are roughly the same, so \emph{WLOG} we assumption that all file size equal to 1):
+
+{\footnotesize
+\begin{align}
+\max        & \notag
+             \   z \\
+\text{s.t.     }&\label{con:min}
+			 z\le w_{i_tj_k} y_{i_tj_k}           & \forall i_t< j_k\\
+			& \label{con:ineqx1}
+              y_{i_tj_k} \leq x_{i_t}             & \forall i_t< j_k \\
+            & \label{con:ineqx2}
+              y_{i_tj_k} \leq x_{j_k}             & \forall i_t< j_k\\
+            & \label{con:ineqx3}
+            x_{i_t}+x_{j_k}-y_{i_tj_k}\le 1     & \forall i_t< j_k \\  
+            & \label{con:ineqx4}
+            \sum_{i_t\in V_t} x_{i_t}= s_t        & \forall t=1,\ldots , C \\
+            & \notag
+            x_{i_t} \in\{0,1\}        & \forall i_t\\
+            & \notag
+            y_{i_tj_k} \in\{0,1\}                 & \forall i_t\neq j_k
+\end{align}
+} 
+In this mixed-integer program, variable $x_{i_t}$ is used as the indicator variable for selecting vertex $v_{i_t}$ for the clique.  Similarly, variable $y_{i_tj_k}$ is used as the indicator variable for selecting edge $e_{i_tj_k}$ for the clique.  Variable $z$ is used to achieve the $\min_{i_t<j_k}{w_{i_tj_k} y_{i_tj_k} }$.
+Inequalities \ref{con:ineqx1} and \ref{con:ineqx2} ensure that edge $e_{i_tj_k}$ is not selected if either vertex $i_t$ or $j_k$ is not selected.  Inequality \ref{con:ineqx3} guarantees that  $y_{i_tj_k}$ is selected if both both vertices $i_t$ and $j_k$ are selected. Inequality \ref{con:ineqx4} ensures that the number of vertices selected from class $t$ is $s_t$.
+
+The above problem is NP-hard, consequently, we use a heuristic algorithm
+(Algorithm~\ref{alg:mst}) with a complexity of $O(|V|^2log(|V|))$
+%
+The idea behind this heuristic is to select the set of vertices greedily i.e. add vertices whose minimum weighted edge to the set selected thus far is maximum.  We deal with the issue of which vertex should be selected first by trying all possible vertices as being the first vertex in the set and taking the maximal such set.
+
+\begin{algorithm}[H]
+\caption{: \textsc{MaxMin Heuristic}} \label{alg:mst}
+\begin{small}
+\begin{algorithmic}[1]
+\STATE Define a list $l$ for storing best vertex set and a variable $max\_min$ for minimum weighted edge
+\STATE $l\leftarrow []$, $max\_min \leftarrow 0$
+\FORALL{ $i\in\{1,\ldots,V\}$}
+		\STATE $min=\infty$
+        \STATE Define a temporary list $l_t$ and $l_t \leftarrow i$
+        \WHILE {new item added to $l_t$}
+            %\STATE initialize an empty list $Temp_L$
+            \FOR {$j \in\{1,\ldots,V\}$ and $j \not \in L$}
+                %\STATE compute $j$ minimum similarity distance $msd_j$ to vertices in $LT$, and add $[msd_j, j]$ to $Temp_L$
+                \STATE $d(j) \leftarrow \min_{o \in l_t} similarity\_dist(o,j)$
+            \ENDFOR
+            \IF{ $\exists$ qualified vertice $v$ }
+                \STATE $l_t.add(\{v | \max {d(v)}\})$
+                \STATE  $temp\_min\leftarrow d(\{v | \max {d(v)}\})$  
+            \ENDIF
+        \IF{ $temp\_min < min$}
+            \STATE $min = temp\_min$
+        \ENDIF
+        \ENDWHILE
+        \IF{$min>max\_min$}
+        		\STATE $max\_min=min$
+        		\STATE $l=l_t$
+        \ENDIF
+\ENDFOR
+\end{algorithmic}
+\end{small}
+$\textbf{OUTPUT}$: $l$ and $max\_min$
+\end{algorithm}
+
+
+
+For this query, intuitively, credit assignment should give more
+importance to dissimilar images.
+%
+For the $i$-th query result, we compute $d_i$, the average distance from
+the $i$-th image to all other images.
+%
+The credit assigned to this image is proportional to
+$\frac{d_i}{\sum{d_i}}$.
+

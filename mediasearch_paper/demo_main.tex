@@ -1,0 +1,102 @@
+\documentclass{sig-alternate-ipsn13}
+
+% \usepackage{amssymb,latexsym,amsmath,subfigure}     % Standard packages
+% \usepackage{algorithm, algorithmic}
+% \usepackage{color}
+% \usepackage{xspace}
+% \usepackage{enumitem}
+\usepackage{booktabs}
+\input{packages}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\input{macros}
+
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+%\addtolength{\textwidth}{1.0in} \addtolength{\textheight}{1.00in}
+%\addtolength{\evensidemargin}{-0.75in}
+%\addtolength{\oddsidemargin}{-0.75in}
+%\addtolength{\topmargin}{-.50in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem/Proof Environments %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newtheorem{theorem}{Theorem}
+%\newenvironment{proof}{\noindent{\bf Proof:}}{$\hfill \Box$ \vspace{10pt}}
+\newcommand{\jyr}[1]{{\color{red}#1}}
+\newcommand{\mscope}{MediaScope\xspace}
+\newcommand{\crs}{Credit Reward Scheme\xspace}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+\begin{document}
+\conferenceinfo{IPSN'13,} {April 8--11, 2013, Philadelphia, Pennsylvania, USA.}
+\CopyrightYear{2013}
+\crdata{978-1-4503-1959-1/13/04}
+\clubpenalty=10000
+\widowpenalty = 10000
+
+\title{Demo Abstract: MediaScope: Selective On-Demand Media Retrieval from Mobile Devices\titlenote{\scriptsize Research was sponsored by the Army Research Laboratory and was
+accomplished under Cooperative Agreement Number W911NF-09-2-0053.  The
+views and conclusions contained in this document are those of the
+authors and should not be interpreted as representing the official
+policies, either expressed or implied, of the Army Research Laboratory
+or the U.S. Government.  The U.S. Government is authorized to
+reproduce and distribute reprints for Government purposes
+notwithstanding any copyright notation here on.}}
+\numberofauthors{6} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Yurong Jiang\titlenote{\scriptsize The first two authors contributed equally to this work and their names are listed alphabetically by last name.}\\
+       \affaddr{University of Southern California}\\
+       \email{yurongji@usc.edu}
+\alignauthor
+Xing Xu \\
+  \affaddr{University of Southern California} \\
+  \email{xingx@usc.edu}
+\alignauthor
+Peter B. Terlecky \\
+       \affaddr{City University of New York}\\
+       \email{pterlecky@gc.cuny.edu}
+\and
+\alignauthor
+Tarek Abdelzaher \\
+       \affaddr{University of Illinois at Urbana-Champaign}\\
+       \email{zaher@illinois.edu}
+\alignauthor
+Amotz Bar-Noy\\
+       \affaddr{City University of New York}\\
+       \email{amotz@sci.brooklyn.cuny.edu}
+\alignauthor
+Ramesh Govindan\\
+       \affaddr{University of Southern California}\\
+       \email{ramesh@usc.edu}
+}
+
+\maketitle
+\input{demo}
+
+{
+\balance\small{
+\bibliographystyle{abbrv}
+\bibliography{main}}}
+
+\end{document}

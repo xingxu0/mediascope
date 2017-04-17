@@ -1,0 +1,211 @@
+%\vspace*{-1ex}
+\section{Introduction}
+\label{sec-1}
+
+Cameras on mobile devices have given rise to significant
+\emph{sharing} of media sensor data (photos and videos).
+%
+Users upload visual media to online social networks like
+Facebook~\cite{facebook}, as well as to dedicated sharing sites like
+Flickr~\cite{flickr} and Instagram~\cite{instagram}.
+%
+However, these uploads are often not \emph{immediate}.
+%
+Camera sensors on mobile devices have been increasing in both image
+and video resolution far faster than cellular network capacity.
+%
+More important, in response to growing demand and consequent
+contention for wireless spectrum, cellular data providers have
+imposed data usage limits, which disincentivize immediate photo
+uploading and create an \emph{availability gap} (the time between
+when a photo or image is taken and when it is uploaded).
+%
+This availability gap can be on the order of several days.
+%shepherd review
+%(Section~\ref{sec-2}).
+
+% capabilities of mobile device cameras have outstripped the
+% cellular network capability since captured  high definition media files(photos and videos) become increasingly large; significant cellular data usage is required to upload media to those social network platforms, and this costs money and wastes their time.
+
+\camera{If media data was available immediately, it might enable
+  scenarios where there is a need for recent (or fresh) information.}
+%
+Consider the following scenario: users at a mall or some other
+location take pictures and video of some event (e.g., an accident or
+altercation).
+%
+An investigative team that wants visual evidence of the event
+%shepherd review
+%, and
+could have searched or browsed images on
+%shepherd review
+%, say, of
+a photo sharing service such as Flickr
+%shepherd review
+%, and may have been able
+to retrieve evidence in a timely fashion.
+%shepherd review
+% in the absence of an availability gap.
+%
+%shepherd review
+%\camera{In this example, because there is an availability gap, the
+%team may not have access to fresher information than it otherwise
+%might have.}
+%
+
+% This has resulted in an \emph{availability gap}: media is shared/uploaded
+% often much later than the data is generated.  But in some situation,
+% people might be more interested in some more  realtime update from
+% their friends, or get some information of a special event known by
+% their friends, but current social network can't guarantee that since
+% social network only provides us a somewhat passive information
+% broadcast way. Thus we need a system that would keep those who are
+% interested in up-to-date wlling-to-share content and eliminate the
+% \emph{freshness} gap.
+
+To bridge this availability gap, and to enable this and other missed
+opportunities,
+%shepherd review
+% (Section~\ref{sec-2}),
+ we consider a novel
+%shepherd review
+%(Section~\ref{sec-5})
+capability for
+%shepherd review
+% selective and timely
+ on-demand retrieval of images from mobile devices.
+%
+Specifically, we develop a system called \mscope that permits
+concurrent
+%shepherd review
+%timely
+geometric queries in feature space on
+%shepherd review
+%media data
+that may be distributed across several mobile devices.
+%shepherd review
+%\mscope is an extensible framework that supports different kinds of
+%queries (Section~\ref{sec-3}).
+%
+%\mscope queries permit nearest-neighbor searches on image feature
+%spaces, \emph{spanners} that retrieve samples of images that span
+%the feature space, or \emph{cluster representatives} that are samples
+%of clusters in the feature space.
+%
+
+%\emph{timeliness}, \camera{which is defined as the query response time duration after issued, may be quite critical in some scenario%(e.g. military settings). In other cases, timeliness can ensure service
+%  interactivity (in much the same way as service level agreements on
+%  latency in Web services ensure low user-perceived delay), which can
+%  be a crucial differentiator for search.}
+
+\camera{
+%However,
+Wireless bandwidth is limited and can vary, \emph{concurrent
+  queries} might compete for limited bandwidth, and query results can
+be large (since images are large and many images can match a query).
+%
+These factors can result in unacceptably long query response times,
+which can impede usability.
+%
+In some cases, applications might need lower query response times for
+correctness; in the scenario above, time may be of the
+essence in taking action (e.g., apprehending suspects).
+%
+%shepherd review
+%So we impose a \emph{timeliness constraint} on query completion; thus,
+%the central challenge in the design of \mscope is to retrieve query
+%results, in the presence of \emph{concurrent queries}, while
+%respecting the \camera{each queries'} timeliness constraints.
+%
+}
+
+\mscope addresses this challenge using an approach that trades off
+query completeness\footnote{Completeness is intuitively defined as the proportion of desired images uploaded before the timeliness bound, see Section~\ref{sec-4-2}}, while meeting
+timeliness requirements
+%shepherd review
+\camera{(measured by the time between the issue of the query and when a query result is returned)}.
+%
+It incorporates a novel credit-assignment scheme that is used to
+%shepherd review
+%differentially
+weight queries as well as differentiate query results
+by their ``importance''.
+%
+A novel credit and timeliness-aware scheduling algorithm that also
+adapts to wireless bandwidth variability ensures that query completeness
+%shepherd review
+%(measured by the total credit of all the returned results of the query)
+is optimized.
+%
+A second important challenge is to enable accurate yet
+computationally-feasible feature extraction.
+%
+\mscope addresses this challenge by finding sweet spots in the
+trade-off between accuracy and computational cost, for extracting
+features from images and frames from videos.
+
+
+% The general idea is, today's smart phone with good computational
+% capability can generate a small metadata for each media object(videos
+% and photos), aggregate them and upload metadata to our cloud server
+% when the network is available.
+% %
+% Then our cloud server only stores these metadata , whenever there is a
+% query, based on the query type and parameters, our cloud server
+% figures out what are the best media objects(photos or video clips) to
+% answer the query and ask the corresponding phones to upload such
+% selected objects.
+%
+
+An evaluation of \mscope on a complete prototype (Section~\ref{sec-4}),
+shows that \mscope achieves upwards of 75\% query completeness even in
+adversarial settings.
+%
+For the query mixes we have experimented with, this completeness rate
+is near-optimal; an omniscient scheduler that is aware of future query
+arrivals does not outperform \mscope.
+%
+Furthermore, \mscope's performance is significantly different from
+other scheduling algorithms that lack one of its features, namely
+timeliness-awareness, credit-awareness, and adaptivity to varying
+bandwidth.
+%shepherd review
+% this justifies our choice of algorithm.
+%
+Finally, we
+%shepherd review
+%quantify the overheads associated with different components in the MediaScope prototype, and
+find that most overheads
+%shepherd review
+associated with MediaScope components are moderate, suggesting that
+timeliness bounds within 10s can be achievable.
+
+%
+% We use our prototype to illustrate tht \mscope satisfies most of the
+% requirements discussed above.
+% %
+% \mscope provides a clean and friendly interface to those investigative
+% team without technical understanding of the system, and also gives
+% option to the advanced developers who are interested in extending
+% system.
+% %
+% We demonstrate that \mscope works efficiently both on the phone and
+% server.
+% %
+% For different queries, \mscope's query output is closest to any
+% intuition and optimal performance.
+% %
+% \mscope's overhead is small, and is robust to any malicious users who
+% contributes wrong data.
+%
+
+% (valuable media file database: huge volume, variety, freshness) As smartphone proliferates, with embedded camera can take high quality images and videos, every moment, a great bunch of media files get captured all over the world. If we take all the media files stored on the phones as one media file database, such database has some great advantages over traditional databases, in terms of its huge volume, topic variety and especially the content freshness.
+%
+%
+% ( one issue compared to local database: difficult to leverage) Although the media database of the phone has a lot of advantages, how to leverage such valuable resource is a challenging problem. It is not feasible to  build a cloud database by simply asking all the users to upload captured media files for mainly two reasons: 1) uploading all the files takes too much network resources, which is extremely scarce for the phone in terms of long uploading time, limited availability and so on; 2) most of the uploaded objects will not be used which makes the uploading wasted. Thus, compared to a local resource database, in our scenario, all the media objects are stored distributively all over the world, which is hard to index, to query (search over) and to retrieve.
+%
+% (make it as usable and interface-friendly as local database) In this paper, we are trying to solve above problem. We propose a on-demand crowd media querying service which can leverage the valuable resources from the phones. The basic idea is, today's smart phone with good computational capability can generate a small signature for each media object, aggregate them and upload signatures to our cloud server when the network is available. Then our cloud server gets the signatures of the resource pool, whenever there is a query, based on the query type and parameters, our cloud server figures out what are the best media objects to answer the query and ask the corresponding phones to upload such selected objects.
+%
+% (to different query types, we have general evaluating system and thus we can efficiently utilize bandwidth on phone) We support different types of queries, for each query we designed the algorithm to find the most valuable objects for answering it. Bandwidth resource on the phone side is quite scarce, our proposed framework can evaluate the importance of each object across different types of queries and thus the bandwidth of each phone can be leveraged in a efficient way, especially when there are concurrent queries to our cloud server.
+%
+% (constraint? till now we focus on deadline only)

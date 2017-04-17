@@ -1,0 +1,5 @@
+
+\section{NP-Completeness and Heuristics}
+\label{sec:heuri}
+
+This scheduling optimization is an NPC complete problem. We give a greedy algorithm that may work here. First, sort the $\frac{N(N-1)}{2}$ similarity values. Second, assign each user $i$ a number bucket with capacity $s_{i}$, from the head of the pair queue, fill corresponding bucket with file id if any file hasn't get marked and bucket is not full, until all bucket get full. 

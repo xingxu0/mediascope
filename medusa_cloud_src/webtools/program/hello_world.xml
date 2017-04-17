@@ -1,0 +1,19 @@
+<xml>
+	<app>
+		<name>HelloWorld</name>
+		<wwid>ENL</wwid>
+		<cmdpush>c2dm</cmdpush>
+			<rrkey>ZDijBdROJrc6TViueBWYVhD5o8hSVzv9Civaj+Zl</rrkey>
+			<timeout>7 hour</timeout>
+			<cmdpush>c2dm</cmdpush>
+
+		<stage>
+			<name>HelloWorld</name> <type>SPC</type>
+			<binary>medusalet_helloworld</binary>		
+			<trigger>none</trigger> 
+			<inst>Hello</inst> 
+		</stage>
+	</app>
+</xml>
+
+
